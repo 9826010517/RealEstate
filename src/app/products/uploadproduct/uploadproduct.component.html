@@ -1,0 +1,59 @@
+<div class="wrapper">
+    <div class="content-wrapper pt-4">
+        <div class="form_div">
+            <form class="col-8 mx-auto create_form" [formGroup]="uploadproductForm" (ngSubmit)="onuploadProduct()">
+                  <div class="form-group">
+                    <label for="exampleSelect1" class="bmd-label-floating">Status</label>
+                    <select class="form-control" id="exampleSelect1" formControlName="adminstatus">
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>   
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="producttitle" class="bmd-label-floating">Product Title</label>
+                    <input type="text" class="form-control" id="producttitle" formControlName="producttitle" [ngClass]="{ 'is-invalid': submitted && uploadproductcontrol.producttitle.errors }">
+                    <div *ngIf="submitted && uploadproductcontrol.producttitle.errors" class="invalid-feedback">
+                      <div *ngIf="uploadproductcontrol.producttitle.errors.required">
+                          <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the product title</p>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Product Description</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="productdes" [ngClass]="{ 'is-invalid': submitted && uploadproductcontrol.productdes.errors }"></textarea>
+                        <div *ngIf="submitted && uploadproductcontrol.productdes.errors" class="invalid-feedback">
+                            <div *ngIf="uploadproductcontrol.productdes.errors.required">
+                                <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the product description</p>
+                            </div>
+                        </div>  
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="baseprice" class="bmd-label-floating">Base Price</label>
+                    <input type="text" class="form-control" id="baseprice" formControlName="baseprice" [ngClass]="{ 'is-invalid': submitted && uploadproductcontrol.baseprice.errors }">
+                    <div *ngIf="submitted && uploadproductcontrol.baseprice.errors" class="invalid-feedback">
+                      <div *ngIf="uploadproductcontrol.baseprice.errors.required">
+                          <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the base price</p>
+                      </div>
+                  </div>
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputlistprice1" class="bmd-label-floating">List Price</label>
+                  <input type="listprice" class="form-control" id="exampleInputlistprice1" formControlName="listprice"  [ngClass]="{ 'is-invalid': submitted && uploadproductcontrol.listprice.errors }" >
+                  <div *ngIf="submitted && uploadproductcontrol.listprice.errors" class="invalid-feedback">
+                    <div *ngIf="uploadproductcontrol.listprice.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the list price</p>
+                    </div>
+                 </div>
+                </div>
+                <div class="form-group">
+                    <input type="file" (change)="onFileChanged($event)">
+                  </div>
+                <div class="text-center textcenter">
+                <button type="submit" class="btn btn-primary btn-raised submit_createadmin">Submit</button>
+             </div>
+              </form>
+        </div>
+</div>  
+</div>

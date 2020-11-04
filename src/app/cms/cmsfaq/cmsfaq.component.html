@@ -1,0 +1,75 @@
+    <div class="wrapper">
+          <p-toast ></p-toast>
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-sm-12 text-center">
+                      <h4 class="m-0 text-dark faq_text">FAQ</h4>
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+              </div>
+              <!-- /.content-header -->
+            <div class="col- 12 col-md-10 col-lg-8 mx-auto pt-3">
+              <accordion [closeOthers]="oneAtATime"  [isAnimated]="true">
+                <accordion-group *ngFor="let faqquestions of faqquestion; let i = index" [heading]="faqquestions?.question"  [isOpen]="isFirstOpen">
+             <div class="row">    
+                <div class="col-11">
+                     <h6 class="faqinner_que">{{faqquestions?.description}}</h6>
+                 </div>
+                 <div class="col-1">
+                    <i  [ngStyle]="{ 'color': (faqquestions?.status == '1' ? 'green' : 'red') }" class="fa fa-circle" aria-hidden="true"></i>
+                    <a  (click)="Editfaq(i,faqquestions?.id,faqeditmodal)">
+                        <span class="material-icons editfaqicon">create</span>
+                        </a>
+                 </div>
+                </div>
+                </accordion-group>
+              </accordion>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #faqeditmodal>
+        <div class="modal-header">
+          <!-- <h4 class="modal-title pull-left">Modal</h4> -->
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  [formGroup]="editfaqForm" (ngSubmit)="onfaqSubmit()"  >
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Question</label>
+                  <input type="text" formControlName="question" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Faq Question" [ngClass]="{ 'is-invalid': submitted && faqerror.question.errors }">
+                  <div *ngIf="submitted && faqerror.question.errors" class="invalid-feedback">
+                    <div *ngIf="faqerror.question.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 faqerrortext">Enter the Question</p>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group ">
+                    <label>FAQ Status</label>
+                    <div class="dropdown">
+                      <select  class="form-control" formControlName="faqstatus">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Discription</label>
+                    <textarea class="form-control" formControlName="discription" id="exampleFormControlTextarea1" rows="6" [ngClass]="{ 'is-invalid': submitted && faqerror.discription.errors }"></textarea>
+                    <div *ngIf="submitted && faqerror.question.errors" class="invalid-feedback">
+                        <div *ngIf="faqerror.question.errors.required">
+                            <p class="text-danger pl-1 pb-0 mb-0 faqerrortext">Enter the discription</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                <button type="submit" class="btn btn-primary faqupdatebtn">Update</button>
+                 </div>
+              </form>
+        </div>
+      </ng-template>

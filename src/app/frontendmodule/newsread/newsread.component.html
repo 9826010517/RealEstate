@@ -1,0 +1,50 @@
+<html class="no-js" lang="zxx">
+<div class="newsread_body">
+             <!-- slider_area_start -->
+             <div class="slider_area">
+                <div class="single_slider single_slider2  d-flex align-items-center property_bg overlay2">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-xl-10 offset-xl-1">
+                                    <div class="property_wrap front_sr_wrap">
+                                            <div class="slider_text text-center justify-content-center">
+                                                    <h3>News</h3>
+                                                </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- news read section -->
+                     <!--================Blog Area =================-->
+   <section class="blog_area single-post-area section-padding">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-12 posts-list">
+             <div class="single-post" *ngFor="let news of getnews">
+                <div class="feature-img text-center">
+                   <img class="img-fluid" src="{{news.image}}" alt="">
+                   <h2 class="mt-2">{{news.title}}
+                 </h2>
+                 <ul class="blog-info-link mt-2 mb-4 d-flex flex-row justify-content-center">
+                    <!-- <li><a href="#"><i class="fa fa-user"></i>Sanjay pal</a></li> -->
+                    <li><a href="#">{{news.add_date}}</a></li>
+                 </ul>
+                </div>
+                <div class="blog_details">
+                  
+                  
+                   <p class="excert">
+                     {{news.content}}
+                   </p>
+            
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!--================ Blog Area end =================-->
+</div>
+</html>

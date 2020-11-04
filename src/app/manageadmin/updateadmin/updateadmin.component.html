@@ -1,0 +1,89 @@
+<div class="wrapper">
+  <p-toast ></p-toast>
+     <!-- Update admin form Wrapper -->
+     <div class="content-wrapper">
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-12">
+              <h4 class="m-0 text-dark mailtemp_text">Update Subadmin</h4>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+    <div class="content-wrapper pt-4">
+        <div class="form_div">
+            <form class="col-8 mx-auto create_form" [formGroup]="updateadminForm" (ngSubmit)="updateadminSubmit()">
+                <div class="form-group">
+                    <label for="exampleSelect1" class="bmd-label-floating">Subadmin Type</label>
+                    <select class="form-control" id="exampleSelect1" formControlName="admintype">
+                      <option value="Super_admin">Super_admin</option>
+                      <option value="Admin">Admin</option>
+                      <option value="User">User</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelect1" class="bmd-label-floating">Subadmin Status</label>
+                    <select class="form-control" id="exampleSelect1" formControlName="adminstatus">
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>   
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="username" class="bmd-label-floating">Subadmin Username</label>
+                    <input type="text" class="form-control" id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && updateadminform.username.errors }">
+                    <div *ngIf="submitted && updateadminform.username.errors" class="invalid-feedback">
+                      <div *ngIf="updateadminform.username.errors.required">
+                          <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the username</p>
+                      </div>
+                      <div *ngIf="updateadminform.username.errors.minlength">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter minium 3 cheractor</p>
+                    </div>
+                    </div>  
+                  </div>
+                  <div class="form-group">
+                    <label for="fullname" class="bmd-label-floating">Subadmin Full Name</label>
+                    <input type="text" class="form-control" id="fullname" formControlName="fullname" [ngClass]="{ 'is-invalid': submitted && updateadminform.fullname.errors }">
+                    <div *ngIf="submitted && updateadminform.fullname.errors" class="invalid-feedback">
+                      <div *ngIf="updateadminform.fullname.errors.required">
+                          <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the full name</p>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="designation" class="bmd-label-floating">Subadmin Designation</label>
+                    <input type="text" class="form-control" id="designation" formControlName="designation" [ngClass]="{ 'is-invalid': submitted && updateadminform.designation.errors }">
+                    <div *ngIf="submitted && updateadminform.designation.errors" class="invalid-feedback">
+                      <div *ngIf="updateadminform.designation.errors.required">
+                          <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the designation</p>
+                      </div>
+                  </div>
+                  </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="bmd-label-floating">Subadmin Email Address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" [ngClass]="{ 'is-invalid': submitted && updateadminform.email.errors }">
+                  <div *ngIf="submitted && updateadminform.email.errors" class="invalid-feedback">
+                    <div *ngIf="updateadminform.email.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the email address</p>
+                    </div>
+                    <div *ngIf="updateadminform.email.errors.email">
+                      <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the valid email address</p>
+                  </div> 
+                 </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1" class="">Password</label>
+                  <input type="text" class="form-control" (keyup)="testone()" id="exampleInputPassword1" formControlName="password">
+                  <div class="updateadmin_passmsg">{{passworderrmsg}}</div>
+                </div>
+                <div class="text-center textcenter">
+                <button type="submit" class="btn btn-primary btn-raised submit_createadmin">Submit</button>
+             </div>
+              </form>
+        </div>
+    </div>
+</div>
+
+

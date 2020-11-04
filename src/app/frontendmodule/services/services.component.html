@@ -1,0 +1,44 @@
+<html class="no-js" lang="zxx">
+<body>
+    <!-- slider_area_start -->
+    <div class="slider_area">
+            <div class="single_slider single_slider2  d-flex align-items-center property_bg overlay2">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-xl-10 offset-xl-1">
+                                <div class="property_wrap front_sr_wrap">
+                                        <div class="slider_text text-center justify-content-center">
+                                                <h3>Our Services</h3>
+                                            </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <!-- slider_area_end -->
+    <div class="popular_property plus_padding service_body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-md-6 col-lg-4"  *ngFor="let services of getservice">
+                    <div class="single_property">
+                        <div class="property_thumb">
+                            <img src="{{services.image}}" alt="">
+                        </div>
+                        <div class="property_content">
+                            <div class="main_pro">
+                                    <h3><a href="#">{{services.title}}</a></h3>
+                                    <div class="mark_pro">
+                                        <span class="mr-2">Description -:</span><span>{{services.content}}</span>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /contact_action_area  -->
+</body>
+
+</html>

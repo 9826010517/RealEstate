@@ -1,0 +1,298 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.faq_text {
+    font-weight: 500 !important;
+    display: inline-block;
+    border-bottom: 2px solid #0b2379;
+    padding-left: 11px;
+    padding-right: 11px;
+    font-size: 21px  !important;;
+    color: #0b2379 !important;
+}
+.faqinner_que{
+    font-size: 14px !important;
+}
+.editfaqicon{
+    vertical-align: bottom;
+    color: green;
+    padding-left: 19px;
+}
+.editfaqicon:hover{
+cursor: pointer;
+}
+
+.faqupdatebtn {
+    background-color: #0b2379 !important;
+    outline: none;
+    border: none;
+}
+.faqerrortext{
+    font-size: 14px !important;
+}
+
+/* ----------------- CMS section*/
+
+.form_wrapper {
+    box-shadow: 0 5px 15px 0 rgba(183,185,194,.54);
+    background: #ffffff;
+    border-radius: 5px;
+}
+.cms_submitbtn{
+    background-color: #0b2379 !important;
+    outline: none;
+    border: none;
+}
+label.cms_quetext {
+    color: #0B2279;
+    /* font-size: 14px; */
+    font-weight: 500 !important;
+}
+.cms_errormsg {
+    font-size: 12px;
+}
+
+/* Create Form */
+.create_form{
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 35px;
+}
+
+
+/* email teplate and adminmange componenet */
+
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    /* width: 25%; */
+  }
+  
+  td, th {
+    /* width: 25%; */
+  }
+  .table_body{
+overflow-x: auto;
+  }
+  .mat-paginator {
+    display: flex;
+    justify-content: start;
+  } 
+.bg-search-color{
+    background: #ffffff;
+    padding-top: 10PX !important;
+    padding: 0 18px;
+}
+span.material-icons.edit-icon {
+  color: green;
+  padding-left: 0px;
+}
+span.material-icons.edit-icon:hover {
+  cursor: pointer !important;
+}
+.mailtemp_text{
+  font-weight: 500 !important;
+  font-size: 21px !important;
+  color: #0b2379 !important;
+  padding-left: 3px;
+}
+
+
+/* navbar section */
+
+.navbar_matex_header{
+  /* background-color: #100c4e !important; */
+}
+
+.profile_updatelink {
+  color: #3a358a !important;
+
+}
+.profile_updatelink:hover {
+  cursor: pointer;
+}
+ .mat-expansion-indicator::after, .mat-expansion-panel-header-description { color: #100c4e;}
+ .mat-expansion-panel-header {
+  height: 33px;
+}
+
+.main-header{
+  z-index: 11 !important;
+}
+.sidebar-color{
+  background:#100c4e;;
+}
+.brand-text,i.nav-icon.fas.fa-edit,.login_user,.slide_menu,i.fas.fa-angle-left.right,.side_menucolor{
+  color: #ffffff;
+}
+i.fa.fa-power-off {
+  padding-right: 5px;
+  /* color: #100c4e; */
+  font-size: 13px;
+  vertical-align: middle;
+  color: #ffffff;
+}
+.logoutText{
+  font-size: 15px !important;
+  color: #100c4e;
+  display: contents;
+  
+}
+
+.logoutLink:hover{
+ cursor: pointer;
+}
+
+.example-button-row button,
+.example-button-row a {
+margin-right: 8px;
+}
+
+.admin_createlink {
+border: 1px solid  #3a358a;
+border-radius: 15px;
+font-size: 13px;
+background-color: #3a358a;
+color: #ffffff !important;
+}
+.main-header .nav-link {
+height: 2.3rem !important;
+
+}
+
+.list_menu_gpitem {
+  background: #100c4e !important;
+  color: #fff !important;
+}
+
+
+/* Create admin form */
+.createadmin_formerr {
+  font-size: 13px;
+}
+.submit_createadmin{
+  background-color: #0b2379 !important;
+  outline: none;
+  border: none;
+}
+
+.updateadmin_passmsg {
+  color: #dc3545!important;
+  font-size: 12px;
+}
+
+/* ************ Frontend section ************ */
+/* home page  */
+.frontend_curoser_body{
+  padding-top: 70px !important;
+  padding-bottom: 110px !important;
+  background: #2b2b73 !important;
+}
+.frontend_curoser_inner1{
+  color: #ffffff !important;
+}
+
+/* service page */
+.service_body{
+  padding-top: 50px !important;
+  padding-bottom: 30px !important;
+}
+
+/* about us page */
+.about_mission {
+  padding-top: 80px !important;
+}
+
+/* Gallery Section */
+.gallery_img{
+  cursor: pointer;
+  width:300px;
+  height:220px;
+  margin-bottom: 20px;
+}
+/* Video page  */
+video#my-video,iframe {
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  min-height: 315px;
+}
+
+/* news section tab */
+.single_team:hover{
+cursor: pointer;
+}
+
+.team_area{
+padding-top: 45px !important;
+}
+/* media Query  */
+
+@media(min-width:768px){
+  .front_sr_wrap{
+    top: 69px !important;
+  }
+  
+}
+@media(min-width:992px){
+  
+}
+@media(min-width:1200px){
+  .gallery_img{
+    width: 360px !important;
+    height: 230px !important;
+  }
+}
+/* side nav bar */
+.mat_side_nav{
+  background: #100C4E !important;
+  padding: 0 16px !important;
+}
+.mat_side_title{
+  color: #fff !important;
+}
+.mat_submenu_color{
+  color: black;
+}
+.mat_side_nav>.mat-expansion-indicator::after{
+  color: #fff !important;
+}
+
+.mat-accordion .mat-expansion-panel:last-of-type{border-bottom-right-radius: 0px !important; border-bottom-left-radius: 0px !important;}
+.mat-accordion .mat-expansion-panel:first-of-type{border-top-right-radius: 0px !important;  border-top-left-radius: 0px !important;}
+.mat-expansion-panel-body {
+  padding: 0 20px 2px !important;
+}
+a.nav-link.ng-tns-c154-2 {
+  padding: 4px !important;;
+}
+.mat-expansion-panel:not([class*=mat-elevation-z]){box-shadow:none};
+.side_menucolor{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+.nav-sidebar .nav-link p {
+  display: inline-block;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color:#ffff !important;
+}
+.menu_color{
+  color:#ffff;
+}
+.mat-expansion-panel{
+  background: none !important;
+}
+.status_video_admin{
+  display: inline-block;
+}

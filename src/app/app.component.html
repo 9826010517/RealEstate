@@ -1,0 +1,4 @@
+<app-navbar  *ngIf="headerFooter"></app-navbar>
+<app-header *ngIf="!headerFooter"></app-header>
+<router-outlet (activate)="onActivate($event)" ></router-outlet>
+<app-footer *ngIf="!headerFooter"></app-footer>

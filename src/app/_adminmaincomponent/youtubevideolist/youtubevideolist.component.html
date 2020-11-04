@@ -1,0 +1,154 @@
+<div class="wrapper">
+    <p-toast ></p-toast>
+  <div class="content-wrapper">
+     <!--   -->
+    <div class="videolist_body p-3 pt-4">
+        <div class="row pt-5 pb-5" *ngIf="!isvideoLoader">
+            <div class="col-12 text-center mx-auto">
+            <div class="spinner-border text-danger text-center" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+        </div>
+     <div class="row" *ngIf="isvideoLoader"> 
+        <div class="col-12 pb-3"> 
+            <div class="text-center">           
+                 <button type="button" class="btn btn-dark" (click)="openModal(videotemplate,'newvid','newindex','new')">+ Add New Video</button>
+            </div>
+        </div> 
+
+     <div class="col-12 col-md-4 col-lg-3 mb-3"  *ngFor="let Videos of Videosdata; let i = index;">
+        <div class="single_property">
+            <div class="status"><i [ngStyle]="{ 'color': (Videos.status == '0' ? 'green' : 'red') }" class="fa fa-circle mr-2 vid_admin_status" aria-hidden="true"></i><p *ngIf="Videos.status == '0'" class="status_video_admin">Active</p><p *ngIf="Videos.status == '1'" class="status_video_admin">Inactive</p></div>
+        <div class="property_thumb">
+            <youtube-player
+                    videoId="{{Videos.short_code}}"
+                    suggestedQuality="highres"
+                    [height]="300"
+                    [width]="300"
+                    >
+            </youtube-player>
+          </div>
+        <div class="property_content" >
+            <div class="main_pro">
+                    <h3>{{Videos.title}}</h3>
+            </div>
+            <div class="update_video d-flex justify-content-between">
+                <!-- Videos.id,Videos.title,Videos.short_code,Videos.status,i,trackid='edit' -->
+                <button type="button" class="btn btn-success" (click)="openModal(videotemplate,Videos.id,i,trackid='edit')">Edit</button>
+                <button type="button" class="btn btn-danger" (click)="openModal(videotemplate,Videos.id,i,trackid='delete')">Delete</button>
+            </div>
+        </div>
+        </div>
+     </div>
+      </div>
+    </div>  
+    <!--  -->
+  </div>  
+</div>
+
+<!-- model for create and update video -->
+<ng-template #videotemplate>
+    <div class="modal-header">
+      <h4 *ngIf="selectionId == 'new'" class="modal-title pull-left">Add New Video</h4>
+      <h4 *ngIf="selectionId == 'edit'" class="modal-title pull-left">Update Video</h4>
+      <h4 *ngIf="selectionId == 'delete'" class="modal-title pull-left">Delete Video</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <!-- create new video -->
+        <form *ngIf="selectionId == 'new'" [formGroup]="createVideo" (ngSubmit)="youtubeCreated()">
+            <div class="form-group">
+              <label for="youtubeid">Youtube Id</label>
+              <input type="text" class="form-control" formControlName="youtubeid" id="youtubeid"  placeholder="Enter youtube id" [ngClass]="{ 'is-invalid': newvidSubmit && createvideoerror.youtubeid.errors }">
+              <!--  -->
+              <div *ngIf="newvidSubmit && createvideoerror.youtubeid.errors" class="invalid-feedback">
+                <div *ngIf="createvideoerror.youtubeid.errors.required">
+                    <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the youtube id</p>
+                </div>
+             </div>
+              <!--  -->
+            </div>
+            <div class="form-group ">
+                <label for="inputState">Video Status</label>
+                <select id="inputState" class="form-control" formControlName="videostatus">
+                  <option selected value="0">Active</option>
+                  <option value="1">Inactive</option>
+                </select>
+              </div>
+            <div class="form-group">
+                <label for="youtubetitle">Youtube Title</label>
+                <textarea class="form-control" formControlName="youtubetitle" id="youtubetitle" placeholder="Enter youtube title" rows="3" [ngClass]="{ 'is-invalid': newvidSubmit && createvideoerror.youtubetitle.errors }"></textarea>
+                  <!--  -->
+              <div *ngIf="newvidSubmit && createvideoerror.youtubetitle.errors" class="invalid-feedback">
+                <div *ngIf="createvideoerror.youtubetitle.errors.required">
+                    <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the youtube title</p>
+                </div>
+             </div>
+              <!--  -->
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary" type="button" disabled *ngIf="iscreateLoader">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+               </button>
+ 
+            <button type="submit" class="btn btn-primary" *ngIf="!iscreateLoader">Submit</button>
+           </div>
+        </form>
+        <!-- edit new video -->
+           <!-- create new video -->
+           <form *ngIf="selectionId == 'edit'" [formGroup]="editVideo" (ngSubmit)="youtubeEdited()">
+            <div class="form-group">
+              <label for="edityoutubeid">Youtube Id</label>
+              <input type="text" class="form-control" formControlName="edityoutubeid" id="edityoutubeid"  placeholder="Enter youtube id" [ngClass]="{ 'is-invalid': editvidSubmit && editvideoerror.edityoutubeid.errors }">
+              <div *ngIf="editvidSubmit && editvideoerror.edityoutubeid.errors" class="invalid-feedback">
+                <div *ngIf="editvideoerror.edityoutubeid.errors.required">
+                    <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the youtube id</p>
+                </div>
+             </div>
+            </div>
+            <div class="form-group ">
+                <label for="inputState">Video Status</label>
+                <select id="inputState" class="form-control" formControlName="editvideostatus">
+                  <option selected value="0">Active</option>
+                  <option value="1">Inactive</option>
+                </select>
+              </div>
+            <div class="form-group">
+                <label for="edityoutubetitle">Youtube Title</label>
+                <textarea class="form-control" formControlName="edityoutubetitle" id="edityoutubetitle" placeholder="Enter youtube title" rows="3"  [ngClass]="{ 'is-invalid': editvidSubmit && editvideoerror.edityoutubetitle.errors }"></textarea>
+                <div *ngIf="editvidSubmit && editvideoerror.edityoutubetitle.errors" class="invalid-feedback">
+                    <div *ngIf="editvideoerror.edityoutubetitle.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the youtube title</p>
+                    </div>
+                 </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary" type="button" disabled *ngIf="iseditLoader">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+               </button>
+
+            <button type="submit" class="btn btn-primary" *ngIf="!iseditLoader">Submit</button>
+           </div>
+        </form>
+        <!-- edit new video -->
+      <!-- delete video  -->
+      <div *ngIf="selectionId == 'delete'" _ngcontent-tpr-c136="" class="example-container text-center">
+          <h2 _ngcontent-tpr-c136="" class="dialogtext1">Are you sure?</h2>
+          <h4 _ngcontent-tpr-c136="" class="dialogtext2">Confirm to proceed</h4>
+          <div _ngcontent-tpr-c136="">
+            <button class="btn btn-primary" type="button" disabled *ngIf="isdeleteLoader">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+           </button>
+            <button *ngIf="!isdeleteLoader" _ngcontent-tpr-c136="" type="button" class="btn btn-success dialogtextbtn1 m-2" (click)="onDelete('deletetrue')">Yes</button>
+            <button _ngcontent-tpr-c136="" type="button" class="btn btn-danger dialogtextbtn1 m-2" (click)="onDelete('deletefalse')">No</button>
+        </div>
+    </div>
+        <!--  -->
+    </div>
+  </ng-template>

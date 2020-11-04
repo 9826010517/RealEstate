@@ -1,0 +1,48 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<div class="aboutus_body">
+                <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider single_slider2  d-flex align-items-center property_bg overlay2">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-10 offset-xl-1">
+                            <div class="property_wrap front_sr_wrap">
+                                    <div class="slider_text text-center justify-content-center">
+                                            <h3>About Us</h3>
+                                        </div>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    <div class="about_mission">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-md-6">
+                    <div class="about_thumb">
+                        <img src="../../../assets/realestate/img/about/about.png" alt="">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                    <div class="about_text" *ngFor="let abouts of aboutus">
+                        <h4>{{abouts.title}}</h4>
+                        <p [innerHTML]="abouts.content"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- accordion  -->
+        <app-faq></app-faq>
+        <!-- accordion  -->
+
+    <!-- team_area  -->
+    
+    
+    <app-newssection></app-newssection>
+                <!-- /team_area  -->
+</div>
+</html>

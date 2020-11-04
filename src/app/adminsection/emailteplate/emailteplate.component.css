@@ -1,0 +1,37 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    /* width: 25%; */
+  }
+  
+  td, th {
+    /* width: 25%; */
+  }
+  .table_body{
+overflow-x: auto;
+  }
+  .mat-paginator {
+    display: flex;
+    justify-content: start;
+  } 
+.bg-search-color{
+    background: #ffffff;
+    padding-top: 10PX !important;
+    padding: 0 18px;
+}
+span.material-icons.edit-icon {
+  color: green;
+  padding-left: 0px;
+}
+span.material-icons.edit-icon:hover {
+  cursor: pointer !important;
+}
+.mailtemp_text{
+  font-weight: 500;
+  font-size: 21px;
+  color: #0b2379 !important;
+  padding-left: 3px;
+}

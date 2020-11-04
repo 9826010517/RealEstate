@@ -1,0 +1,54 @@
+<form class=""  [formGroup]="contactusForm" (ngSubmit)="enquirySubmit()">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <input class="form-control"   type="text"   placeholder="Enter your name" formControlName="enquiryName" [ngClass]="{ 'is-invalid': submitted && contactvalidation.enquiryName.errors }">
+                <div *ngIf="submitted && contactvalidation.enquiryName.errors" class="invalid-feedback">
+                    <div *ngIf="contactvalidation.enquiryName.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the name</p>
+                    </div>
+                  </div>  
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <input class="form-control"  type="email"  placeholder="Email" formControlName="enquiryEmail" [ngClass]="{ 'is-invalid' : submitted && contactvalidation.enquiryEmail.errors }" >
+                <div *ngIf="submitted && contactvalidation.enquiryEmail.errors" class="invalid-feedback">
+                    <div *ngIf="contactvalidation.enquiryEmail.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the email</p>
+                    </div>
+                    <div *ngIf="contactvalidation.enquiryEmail.errors.email">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the correct email</p>
+                    </div>
+                  </div>  
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <input class="form-control"   type="text"  placeholder="Enter Contact Number" formControlName="enquiryContact" [ngClass]="{ 'is-invalid' : submitted && contactvalidation.enquiryContact.errors }">
+                <div *ngIf="submitted && contactvalidation.enquiryContact.errors" class="invalid-feedback">
+                    <div *ngIf="contactvalidation.enquiryContact.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the contact number</p>
+                    </div>
+                
+                  </div>  
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <textarea class="form-control w-100"   cols="30" rows="9"  placeholder="Enter The Detail" formControlName="enquiryDetail" [ngClass]="{ 'is-invalid' : submitted && contactvalidation.enquiryDetail.errors }"></textarea>
+                <div *ngIf="submitted && contactvalidation.enquiryDetail.errors" class="invalid-feedback">
+                    <div *ngIf="contactvalidation.enquiryDetail.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the description</p>
+                    </div>
+                  </div>  
+            </div>
+        </div>
+    </div>
+    <div class="form-group mt-3">
+        <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="formmsg != ''">
+        {{formmsg}}
+      </div>
+</form>

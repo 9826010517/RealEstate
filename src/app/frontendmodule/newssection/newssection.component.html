@@ -1,0 +1,27 @@
+<div class="team_area">
+    <div class="container">
+            <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section_title mb-40 text-center">
+                            <h3>
+                                    Hot News
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-6" *ngFor="let news of getnews">
+                        <div class="single_team">
+                            <a   [routerLink]="['/readnews']" [queryParams]="{ newsid: news.id}">
+                            <div class="team_thumb">
+                                <img src="{{news.image}}" alt="">
+                            </div>
+                            <div class="team_info text-center">
+                                <h3>{{news.title}}</h3>
+                            </div>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>

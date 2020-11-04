@@ -1,0 +1,98 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<div class="aboutus_body">
+    <!-- accordion  -->
+    <div class="accordion_area">
+            <div class="container">
+                <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-6">
+                                <div class="faq_ask">
+                                    <h3>Frequently ask</h3>
+                                        <div id="accordion">
+                                            <div class="bs-example">
+                                                <div class="card" [attr.id]="'accordion_' + i" *ngFor="let faqdetails of faqdetail; let i = index;">
+                                                    <div class="panel panel-default" >
+                                                        <div class="card-header">
+                                                            <h5 class="panel-title mb-0">
+                                                                <button class="btn btn-link collapsed" data-toggle="collapse" [attr.data-parent]="'#accordion_' + i" [attr.href]="'#collapseOne_' + i" aria-expanded="false">
+                                                                    {{faqdetails.question}}
+                                                            </button>
+                                                            </h5>
+                                                        </div>
+                                                        <!-- [attr.id]="'collapseOne_' + i" -->
+                                                        <div [id]="'collapseOne_' + i" class="panel-collapse collapse">
+                                                            <div class="card-body">
+                                                                {{faqdetails.description}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                         
+                                           
+                                                <!-- <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <h5 class="mb-0">
+                                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                                    Who direct esteem It esteems?
+                                                            </button>
+                                                        </h5>
+                                                    </div>
+                                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion" style="">
+                                                        <div class="card-body">Esteem spirit temper too say adieus who direct esteem esteems luckily or picture placing drawing.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header" id="headingThree">
+                                                        <h5 class="mb-0">
+                                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                    Duis consectetur feugiat auctor?
+                                                            </button>
+                                                        </h5>
+                                                    </div>
+                                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion" style="">
+                                                        <div class="card-body">Esteem spirit temper too say adieus who direct esteem esteems luckily or picture placing drawing.
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                </div>
+                            </div>
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="accordion_thumb">
+                            <img src="../../../assets/realestate/img/banner/accordion.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- accordion  -->
+
+    <div class="counter_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_counter">
+                        <h3> <span  class="counter" >200</span> <span>+</span> </h3>
+                        <p>Properties for sale</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_counter">
+                        <h3> <span class="counter" >300</span></h3>
+                        <p>Properties for sale</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_counter">
+                        <h3> <span class="counter" >15</span></h3>
+                        <p>Properties for sale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /contact_action_area  -->
+</div>
+</html>
+

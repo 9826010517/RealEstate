@@ -1,0 +1,6 @@
+input.form-control.ng-dirty.is-invalid.ng-invalid.ng-touched {
+    background: none !important ;
+}
+.form-control.is-invalid{
+    background: none !important ;
+}

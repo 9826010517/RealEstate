@@ -1,0 +1,96 @@
+<div class="wrapper">
+   <!-- create admin form Wrapper. create admin page content -->
+   <p-toast ></p-toast>
+   <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h4 class="m-0 text-dark mailtemp_text">Create Subadmin</h4>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="content-wrapper pt-4">
+        <div class="form_div">
+            <form class="col-8 mx-auto create_form" [formGroup]="createadminForm" (ngSubmit)="oncreateSubmit()">
+                <div class="form-group">
+                    <label for="exampleSelect1" class="bmd-label-floating">Subadmin Type</label>
+                    <select class="form-control" id="exampleSelect1" formControlName="admintype">
+                      <option value="Super_admin">Super_admin</option>
+                      <option value="Admin">Admin</option>
+                      <option value="User">User</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleSelect1" class="bmd-label-floating">Subadmin Status</label>
+                    <select class="form-control" id="exampleSelect1" formControlName="adminstatus">
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>   
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="username" class="bmd-label-floating">Subadmin Username</label>
+                    <input type="text" class="form-control" id="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && createadminuser.username.errors }">
+                    <div *ngIf="submitted && createadminuser.username.errors" class="invalid-feedback">
+                      <div *ngIf="createadminuser.username.errors.required">
+                          <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the username</p>
+                      </div>
+                      <div *ngIf="createadminuser.username.errors.minlength">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter minium 3 cheractor</p>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="fullname" class="bmd-label-floating">Subadmin Full Name</label>
+                    <input type="text" class="form-control" id="fullname" formControlName="fullname" [ngClass]="{ 'is-invalid': submitted && createadminuser.fullname.errors }">
+                    <div *ngIf="submitted && createadminuser.fullname.errors" class="invalid-feedback">
+                      <div *ngIf="createadminuser.fullname.errors.required">
+                          <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the full name</p>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="designation" class="bmd-label-floating">Subadmin Designation</label>
+                    <input type="text" class="form-control" id="designation" formControlName="designation" [ngClass]="{ 'is-invalid': submitted && createadminuser.designation.errors }">
+                    <div *ngIf="submitted && createadminuser.designation.errors" class="invalid-feedback">
+                      <div *ngIf="createadminuser.designation.errors.required">
+                          <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the designation</p>
+                      </div>
+                  </div>
+                  </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="bmd-label-floating">Subadmin Email Address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && createadminuser.email.errors }" >
+                  <!-- [ngClass]="{ 'is-invalid': submitted && createadminuser.email.errors }" -->
+                  <div *ngIf="submitted && createadminuser.email.errors" class="invalid-feedback">
+                    <div *ngIf="createadminuser.email.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the email address</p>
+                    </div>
+                    <div *ngIf="createadminuser.email.errors.email">
+                      <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the valid email address</p>
+                  </div> 
+                 </div>
+
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1" class="">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" [ngClass]="{ 'is-invalid': submitted && createadminuser.password.errors }">
+                  <div *ngIf="submitted && createadminuser.password.errors" class="invalid-feedback">
+                    <div *ngIf="createadminuser.password.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the password</p>
+                    </div>
+                    <div *ngIf="createadminuser.password.errors.minlength">
+                      <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter minium 6 cheractor</p>
+                  </div> 
+                  </div>
+                </div>
+                <div class="text-center textcenter">
+                <button type="submit" class="btn btn-primary btn-raised submit_createadmin">Submit</button>
+             </div>
+              </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <div class="content-wrapper pt-4">
+        <p-toast ></p-toast>
+        <div class="form_wrapper col-8 mx-auto pt-3">
+          <form class="p-4" (ngSubmit)="oncSubmit()">
+            <div class="form-group">
+              <label for="editque" class="cms_quetext">Title</label>
+              <input type="text" class="form-control" id="editque" aria-describedby="emailHelp" placeholder="" name="que"  [(ngModel)]="model.que"  #que="ngModel">
+             <div><p class="text-danger errmsg_cmspage pl-2 pt-1">{{titleerrmsg}}</p></div>
+            </div>
+            <div class="form-group">
+            <label for="editque" class="cms_quetext">Description</label>
+            <ckeditor [(ngModel)]="model.editorData" [editor]="Editor" [ngModelOptions]="{standalone: true}"></ckeditor>
+            </div>  
+            <div class="text-center">
+            <button type="submit" class="btn btn-primary cms_submitbtn">Submit</button>
+             </div>
+          </form>
+        </div>
+    </div>
+</div>
+
