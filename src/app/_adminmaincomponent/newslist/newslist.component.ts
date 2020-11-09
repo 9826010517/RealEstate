@@ -32,7 +32,8 @@ export class NewslistComponent implements OnInit {
     servicedetail:['',Validators.required],
     servicestatus:['']
   })
-
+  excerpt: Array<any> = [];
+  slicify = (id) => this.excerpt[id] = !this.excerpt[id];
   get serviceerror(){ return this.createserviceForm.controls }
 
   // for edit video

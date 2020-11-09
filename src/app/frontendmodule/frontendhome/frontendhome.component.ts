@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UseraccessService} from '../../_service/useraccess.service';
-import {CONSTANTS} from '../../_service/constant';
+import {CONSTANTS,serviceimage,smallserviceimage} from '../../_service/constant';
 
 @Component({
   selector: 'app-frontendhome',
@@ -10,8 +10,15 @@ import {CONSTANTS} from '../../_service/constant';
 export class FrontendhomeComponent implements OnInit {
   getservice = [];
   testimonial = [];
+  excerpt: Array<any> = [];
+  slicify = (id) => {
+    console.log('metest here with id',  this.excerpt[id])
+    console.log('metest here with id +++',  !this.excerpt[id])
+    this.excerpt[id] = !this.excerpt[id];
+    console.log('metest here', this.excerpt)
+  }
   constructor(private userservice:UseraccessService) {}
-
+  image_baseurl = smallserviceimage;
   ngOnInit(): void {
 
    this.userservice.get(CONSTANTS.frontGetService).subscribe((res:any)=>{

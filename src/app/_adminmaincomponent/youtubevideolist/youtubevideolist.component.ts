@@ -95,6 +95,9 @@ export class YoutubevideolistComponent implements OnInit {
             }
             this.Videosdata.unshift(newVid);
             this.createVideo.reset();
+            this.createVideo.patchValue({
+              videostatus:0
+            })
             this.newvidSubmit = false; 
           this.messageService.add({severity:'success', summary: 'Success',detail:res.message});
           this.iscreateLoader = false;
@@ -125,6 +128,7 @@ export class YoutubevideolistComponent implements OnInit {
           this.editVideo.reset();
           this.editvidSubmit = false;
           this.modalRef.hide();
+       
         this.messageService.add({severity:'success', summary: 'Success',detail:res.message});
         this.iseditLoader = false;
         }

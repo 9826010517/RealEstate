@@ -37,7 +37,7 @@ export class AppComponent implements OnDestroy {
              if(this.urlQuery == '/adminhome' || this.urlQuery == '/login'  || this.urlQuery == '/forgotpassword' || this.urlQuery == '/emailtemplate'
           || this.urlQuery == '/editemail' || this.urlQuery == '/faq' || this.urlQuery == '/cmsupdate' || this.urlQuery == '/createadmin' || this.urlQuery == '/adminmanage'
           || this.urlQuery == '/updateadmin' || this.urlQuery == '/updateprofile' || this.urlQuery == '/uploadproduct'|| this.urlQuery == '/videolisting' || this.urlQuery == '/servicelisting'
-          || this.urlQuery == '/newslisting'          ){
+          || this.urlQuery == '/newslisting'  || this.urlQuery == '/addgallery'  ){
             // console.log('check b val',this.urlQuery);
             this.headerFooter = true;
           }else{

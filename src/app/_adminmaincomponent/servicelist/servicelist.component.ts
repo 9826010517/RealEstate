@@ -31,8 +31,9 @@ export class ServicelistComponent implements OnInit {
     servicetitle :['', Validators.required],
     servicedetail:['',Validators.required],
     servicestatus:['']
-  })
-
+  });
+  excerpt: Array<any> = [];
+  slicify = (id) => this.excerpt[id] = !this.excerpt[id];
   get serviceerror(){ return this.createserviceForm.controls }
 
   // for edit video

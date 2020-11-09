@@ -72,16 +72,13 @@
     <a href="index3.html" class="brand-link">
       <img src="assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">House Project</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
         <div class="info">
           <a routerLink="" class="d-block login_user" >{{profilename}}</a>
         </div>
@@ -126,16 +123,16 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <!-- active -->
-                <a routerLink="/adminhome" class="nav-link">
-                  <i class="fa fa-tachometer mr-2 menu_color " aria-hidden="true"></i>
-                  <p class="side_menucolor">Dashboard</p>
+                <a routerLink="/videolisting" class="nav-link">
+                  <i class="fa fa-youtube mr-2 menu_color" aria-hidden="true"></i>
+                  <p class="side_menucolor">Videolist</p>
                 </a>
               </li>
               <li class="nav-item">
                 <!-- active -->
-                <a routerLink="/videolisting" class="nav-link">
+                <a routerLink="/addgallery" class="nav-link">
                   <i class="fa fa-youtube mr-2 menu_color" aria-hidden="true"></i>
-                  <p class="side_menucolor">Videolist</p>
+                  <p class="side_menucolor">Gallery Images</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -155,67 +152,6 @@
             </ul>
           </li>
           
-
-          <li class="nav-item has-treeview menu-open mb-2">
-            <mat-accordion class="mat_side_body">
-            <mat-expansion-panel class="mat_side_expansion" (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-                <mat-expansion-panel-header class="mat_side_nav">
-                  <mat-panel-title class="mat_side_title">
-                    Admin Manage 
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <a routerLink="/createadmin" class="nav-link">
-                  <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
-                  <p class="slide_menu mat_submenu_color">Create Subadmin</p>
-                </a>
-                <a routerLink="/adminmanage" class="nav-link">
-                  <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
-                  <p class="slide_menu mat_submenu_color">Manage Subadmin</p>
-                </a>
-              </mat-expansion-panel>
-            </mat-accordion>
-          </li>
-
-          <li class="nav-item has-treeview menu-open mb-2">
-            <mat-accordion class="mat_side_body">
-            <mat-expansion-panel class="mat_side_expansion" (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-                <mat-expansion-panel-header class="mat_side_nav">
-                  <mat-panel-title class="mat_side_title">
-                    Service
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <a routerLink="/createadmin" class="nav-link">
-                  <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
-                  <p class="slide_menu mat_submenu_color">Create new service</p>
-                </a>
-                <a routerLink="/adminmanage" class="nav-link">
-                  <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
-                  <p class="slide_menu mat_submenu_color">service list</p>
-                </a>
-              </mat-expansion-panel>
-            </mat-accordion>
-          </li>
-
-          <li class="nav-item has-treeview menu-open mb-2">
-            <mat-accordion class="mat_side_body">
-            <mat-expansion-panel class="mat_side_expansion" (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
-                <mat-expansion-panel-header class="mat_side_nav">
-                  <mat-panel-title class="mat_side_title">
-                    Site Setting
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <a routerLink="/emailtemplate" class="nav-link">
-                  <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
-                  <p class="slide_menu mat_submenu_color">Email Templates</p>
-                </a>
-              </mat-expansion-panel>
-            </mat-accordion>
-          </li>
-
-         
           <li class="nav-item has-treeview menu-open mb-2">
             <mat-accordion class="mat_side_body">
             <mat-expansion-panel class="mat_side_expansion" (opened)="panelOpenState = true"
@@ -229,82 +165,22 @@
                   <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
                   <p class="slide_menu mat_submenu_color">About Us</p>
                 </a>
-                <!-- <a routerLink="/cmsupdate" [queryParams]="{ page: 'contactus' }"  class="nav-link">
+               <!-- <a routerLink="/cmsupdate" [queryParams]="{ page: 'contactus' }"  class="nav-link">
                   <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
                   <p class="slide_menu mat_submenu_color">Contact Us</p>
-                </a>
-                <a routerLink="/cmsupdate" [queryParams]="{ page: 'termscondition' }"  class="nav-link">
-                  <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
-                  <p class="slide_menu mat_submenu_color">T & C</p>
                 </a> -->
+              
                 <a routerLink="/faq"  [queryParams]="{ faqpage: 'faqquestion' }" class="nav-link">
                   <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
                   <p class="slide_menu mat_submenu_color">FAQ</p>
                 </a>
-                <a [routerLink]="faq"  [queryParams]="{ faqpage: 'testimonial' }" class="nav-link">
+                <a routerLink="/faq"  [queryParams]="{ faqpage: 'testimonial' }" class="nav-link">
                   <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
                   <p class="slide_menu mat_submenu_color">Testimonial</p>
                 </a>
               </mat-expansion-panel>
             </mat-accordion>
           </li>
-          
-          
-          <!-- <li class="nav-item has-treeview" *ngIf="(authservice.loggeduser | async) == 'Super_admin' || (authservice.loggeduser | async) == 'Admin'">
-            <a  href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p class="slide_menu">
-                Site Setting
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="/emailtemplate" class="nav-link">
-                  <i class="far fa-circle nav-icon side_menucolor"></i>
-                  <p class="slide_menu">Email Templates</p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
-          
-        
-          <!-- <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p class="slide_menu">
-                CMS
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="/cmsupdate" [queryParams]="{ page: 'aboutus' }" class="nav-link">
-                  <i class="far fa-circle nav-icon side_menucolor"></i>
-                  <p class="slide_menu">About Us</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="/cmsupdate" [queryParams]="{ page: 'contactus' }"  class="nav-link">
-                  <i class="far fa-circle nav-icon side_menucolor"></i>
-                  <p class="slide_menu">Contact Us</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="/cmsupdate" [queryParams]="{ page: 'termscondition' }" class="nav-link">
-                  <i class="far fa-circle nav-icon side_menucolor"></i>
-                  <p class="slide_menu">T & C</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="/faq" class="nav-link">
-                  <i class="far fa-circle nav-icon side_menucolor"></i>
-                  <p class="slide_menu">FAQ</p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
-    
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

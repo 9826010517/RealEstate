@@ -4,7 +4,8 @@ import { environment } from '../../environments/environment';
 export const BASEURL = environment.api_url;
 export const FRONTBASEURL = environment.front_apiurl;
 export const serviceimage = 'https://www.learnsetu.com/RealEstate/assets/upload/services_imgs/';
-
+export const smallserviceimage = 'https://www.learnsetu.com/RealEstate/assets/upload/services_imgs/small/';
+export const galleryimages = 'https://www.learnsetu.com/RealEstate/assets/upload/gallery_imgs/';
 
 // Global constant file
 export const CONSTANTS = Object.freeze({
@@ -34,6 +35,7 @@ export const CONSTANTS = Object.freeze({
     frontfaq:FRONTBASEURL + 'faqs',
     frontnews:FRONTBASEURL + 'news',
     frontcontactform:FRONTBASEURL + 'submit_enquiry',
+    frontgallery:FRONTBASEURL + 'gallery',
     // ++++ admin pannel api +++ //
     admincreatevideo:FRONTBASEURL+'create_video',
     adminupdatevideo:FRONTBASEURL+'update_video',
@@ -51,6 +53,8 @@ export const CONSTANTS = Object.freeze({
     adminedittestimon:FRONTBASEURL + 'update_testimonial',
     admindeletetestimon:FRONTBASEURL + 'delete_testimonial',
     admineditaboutus:FRONTBASEURL + 'update_aboutus',
+    adminaddgallery:FRONTBASEURL + 'create_gallery',
+    admindeletegallery:FRONTBASEURL + 'delete_gallery',
     testimage:FRONTBASEURL+'create_image'
 });
 

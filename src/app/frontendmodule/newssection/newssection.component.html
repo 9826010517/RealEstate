@@ -10,14 +10,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-6" *ngFor="let news of getnews">
+                    <div class="col-xl-3 col-lg-3 col-md-6" *ngFor="let news of getnews | slice:0:4">
                         <div class="single_team">
                             <a   [routerLink]="['/readnews']" [queryParams]="{ newsid: news.id}">
                             <div class="team_thumb">
-                                <img src="{{news.image}}" alt="">
+                                <img src="{{image_baseurl}}{{news.image}}" class="img-fluid news_image_size" alt="">
                             </div>
                             <div class="team_info text-center">
-                                <h3>{{news.title}}</h3>
+                                <p class="news_title">{{news.title}}</p>
                             </div>
                         </a>
                         </div>

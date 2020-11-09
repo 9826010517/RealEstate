@@ -20,16 +20,21 @@
     <div class="popular_property plus_padding service_body">
         <div class="container">
             <div class="row">
-                <div class="col-xl-4 col-md-6 col-lg-4"  *ngFor="let services of getservice">
+                <div class="col-xl-4 col-md-6 col-lg-4"  *ngFor="let services of getservice;let i = index">
                     <div class="single_property">
                         <div class="property_thumb">
-                            <img src="{{services.image}}" alt="">
+                            <img src="{{image_baseurl}}{{services.image}}" alt="" class="img-fluid home_service_img">
                         </div>
                         <div class="property_content">
                             <div class="main_pro">
                                     <h3><a href="#">{{services.title}}</a></h3>
                                     <div class="mark_pro">
-                                        <span class="mr-2">Description -:</span><span>{{services.content}}</span>
+                                        <span class="mr-2">Description -:</span>
+                                        <span class="comment_text">
+                                            {{excerpt[i] ? services.content : services.content | slice:0:270}}
+                                            <a href="javascript:void(0);" *ngIf="services.content.length > 270"
+                                                (click)="slicify(i)" [text]="excerpt[i]?'[Less]':'[More]'"></a>
+                                        </span>
                                     </div>
                             </div>
                         </div>

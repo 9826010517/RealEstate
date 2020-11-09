@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute } from '@angular/router';
 import {UseraccessService} from '../../_service/useraccess.service';
-import {CONSTANTS} from '../../_service/constant';
+import {CONSTANTS,serviceimage} from '../../_service/constant';
 
 @Component({
   selector: 'app-newsread',
@@ -12,6 +12,7 @@ import {CONSTANTS} from '../../_service/constant';
 export class NewsreadComponent implements OnInit {
   getnews = [];
   newsId = "";
+  image_baseurl = serviceimage;
   constructor(private userservice:UseraccessService,private activatedroute : ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {

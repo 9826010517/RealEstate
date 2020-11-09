@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UseraccessService} from '../../_service/useraccess.service';
-import {CONSTANTS} from '../../_service/constant';
+import {CONSTANTS,serviceimage,smallserviceimage} from '../../_service/constant';
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -9,7 +9,9 @@ import {CONSTANTS} from '../../_service/constant';
 export class ServicesComponent implements OnInit {
   getservice = [];
   constructor(private userservice:UseraccessService) { }
-
+  image_baseurl = smallserviceimage;
+  excerpt: Array<any> = [];
+  slicify = (id) => this.excerpt[id] = !this.excerpt[id];
   ngOnInit(): void {
     this.userservice.get(CONSTANTS.frontGetService).subscribe((res:any)=>{
 

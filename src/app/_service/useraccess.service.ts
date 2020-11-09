@@ -42,7 +42,7 @@ export class UseraccessService {
                       this.userprofile.next( res.data);
                       
                       console.log('my res', res.data)
-                      this.router.navigate(['/adminhome']);
+                      this.router.navigate(['/servicelisting']);
                     }
                   
                    

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       let userToken = localStorage.getItem('loginkey');
       let userRole = localStorage.getItem('userrole');
       if(userToken && userRole){
-        this.router.navigate(['/adminhome']);
+        this.router.navigate(['/servicelisting']);
       }
   }
   
