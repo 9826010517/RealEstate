@@ -25,7 +25,7 @@ export class AppComponent implements OnDestroy {
       .subscribe((event) => {
      
         if (event instanceof NavigationEnd) {
-          if (this.peramroute.snapshot.queryParams['page']) {
+          if (this.peramroute.snapshot.queryParams['page'] || this.peramroute.snapshot.queryParams['faqpage']) {
             console.log('check b val',this.peramroute.snapshot.queryParams['page']);
               let url: string = this.router.url.substring(0, this.router.url.indexOf("?"));
               this.urlQuery = url;
@@ -36,7 +36,8 @@ export class AppComponent implements OnDestroy {
                
              if(this.urlQuery == '/adminhome' || this.urlQuery == '/login'  || this.urlQuery == '/forgotpassword' || this.urlQuery == '/emailtemplate'
           || this.urlQuery == '/editemail' || this.urlQuery == '/faq' || this.urlQuery == '/cmsupdate' || this.urlQuery == '/createadmin' || this.urlQuery == '/adminmanage'
-          || this.urlQuery == '/updateadmin' || this.urlQuery == '/updateprofile' || this.urlQuery == '/uploadproduct'|| this.urlQuery == '/videolisting' ){
+          || this.urlQuery == '/updateadmin' || this.urlQuery == '/updateprofile' || this.urlQuery == '/uploadproduct'|| this.urlQuery == '/videolisting' || this.urlQuery == '/servicelisting'
+          || this.urlQuery == '/newslisting'          ){
             // console.log('check b val',this.urlQuery);
             this.headerFooter = true;
           }else{

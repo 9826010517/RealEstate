@@ -1,0 +1,185 @@
+<div class="wrapper">
+  <p-toast ></p-toast>
+<div class="content-wrapper">
+   <!--   -->
+  <div class="videolist_body p-3 pt-4">
+      <div class="row pt-5 pb-5" *ngIf="!isvideoLoader">
+          <div class="col-12 text-center mx-auto">
+          <div class="spinner-border text-danger text-center" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+      </div>
+   <div class="row" *ngIf="isvideoLoader"> 
+      <div class="col-12 pb-3"> 
+          <div class="text-center">           
+               <button type="button" class="btn btn-dark" (click)="openModal(videotemplate,'newvid','newindex','new')">+ Add New News</button>
+          </div>
+      </div> 
+
+   <div class="col-12 col-md-4 col-lg-3 mb-3"  *ngFor="let Service of Servicedata; let i = index;">
+      <div class="single_property_service d-flex flex-column">
+        <div class="single_service_inner">
+          <div class="status"><i [ngStyle]="{ 'color': (Service.is_status == '0' ? 'green' : 'red') }" class="fa fa-circle mr-2 vid_admin_status" aria-hidden="true"></i><p *ngIf="Service.status == '0'" class="status_video_admin">Active</p><p *ngIf="Service.status == '1'" class="status_video_admin">Inactive</p></div>
+         <div class="property_thumb text-center">
+          <img src="{{serviceImgPath}}{{Service.image}}" class="img-fluid service_images" alt="Responsive image">
+        </div>
+      </div>
+      <div class="property_content pt-3" >
+          <div class="main_pro">
+               <span class="service_inner_title">Title -</span><h3 class="service_inner_detail">{{Service.title}}</h3>
+          </div>
+          <div class="main_pro">
+            <span class="service_inner_title">Description -</span> <h3 class="service_inner_detail">{{Service.content}}</h3>
+          </div>
+          <div class="update_video d-flex justify-content-between">
+              <button type="button" class="btn btn-success" (click)="openModal(videotemplate,Service.id,i,trackid='edit')">Edit</button>
+              <button type="button" class="btn btn-danger" (click)="openModal(videotemplate,Service.id,i,trackid='delete')">Delete</button>
+          </div>
+      </div>
+      </div>
+   </div>
+   
+    </div>
+  </div>  
+  <!--  -->
+</div>  
+</div>
+
+<!-- model for create and update video -->
+<ng-template #videotemplate>
+  <div class="modal-header">
+    <h4 *ngIf="selectionId == 'new'" class="modal-title pull-left">Add New News</h4>
+    <h4 *ngIf="selectionId == 'edit'" class="modal-title pull-left">Update News</h4>
+    <h4 *ngIf="selectionId == 'delete'" class="modal-title pull-left">Delete News</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- image upload -->
+    <div class="row custom-wrapper">
+      <div class="col-md-12">
+  
+        <!-- Form starts -->
+        <!-- (ngSubmit)="onSubmit()" -->
+        <form *ngIf="selectionId != 'delete'" [formGroup]="imageuploadForm" >
+  
+          <div class="group-gap">
+  
+            <!-- Upload image -->
+            <div class="avatar-upload">
+              <div class="avatar-edit">
+                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+              </div>
+              <div class="avatar-preview">
+                <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                </div>
+              </div>
+            </div>
+          </div>
+  
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-danger btn-lg btn-block uploadimg_btn" (click)="fileInput.click()">Upload Image</button>
+            <div class="text-center pt-1">
+              <span class="text-danger">{{nullImgErr}}</span>
+           </div>
+        </form><!-- Form ends -->
+  
+      </div>
+    </div>
+    <!-- image upload closed -->
+      <!-- create new video -->
+      <form *ngIf="selectionId == 'new'" [formGroup]="createserviceForm" (ngSubmit)="serviceCreated()">
+          <div class="form-group">
+            <label for="servicetitle">Service Title</label>
+            <input type="text" class="form-control" formControlName="servicetitle" id="servicetitle"  placeholder="Enter youtube id" [ngClass]="{ 'is-invalid': newvidSubmit && serviceerror.servicetitle.errors }">
+            <!--  -->
+            <div *ngIf="newvidSubmit && serviceerror.servicetitle.errors" class="invalid-feedback">
+              <div *ngIf="serviceerror.servicetitle.errors.required">
+                  <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the service title</p>
+              </div>
+           </div>
+            <!--  -->
+          </div>
+          <div class="form-group ">
+              <label for="inputState">Service Status</label>
+              <select id="inputState" class="form-control" formControlName="servicestatus">
+                <option selected value="0">Active</option>
+                <option value="1">Inactive</option>
+              </select>
+            </div>
+          <div class="form-group">
+              <label for="servicedetail">Service Description</label>
+              <textarea class="form-control" formControlName="servicedetail" id="servicedetail" placeholder="Enter youtube title" rows="3" [ngClass]="{ 'is-invalid': newvidSubmit && serviceerror.servicedetail.errors }"></textarea>
+                <!--  -->
+            <div *ngIf="newvidSubmit && serviceerror.servicedetail.errors" class="invalid-feedback">
+              <div *ngIf="serviceerror.servicedetail.errors.required">
+                  <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the service description</p>
+              </div>
+           </div>
+            <!--  -->
+          </div>
+          <div class="text-center">
+              <button class="btn btn-primary" type="button" disabled *ngIf="iscreateLoader">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+             </button>
+
+          <button type="submit" class="btn btn-primary" *ngIf="!iscreateLoader">Submit</button>
+         </div>
+      </form>
+      <!-- edit new video -->
+         <!-- create new video -->
+         <form *ngIf="selectionId == 'edit'" [formGroup]="editService" (ngSubmit)="serviceEdited()">
+          <div class="form-group">
+            <label for="editservicetitle">Service Title</label>
+            <input type="text" class="form-control" formControlName="editservicetitle" id="editservicetitle"  placeholder="Enter youtube id" [ngClass]="{ 'is-invalid': editvidSubmit && editserviceerror.editservicetitle.errors }">
+            <div *ngIf="editvidSubmit && editserviceerror.editservicetitle.errors" class="invalid-feedback">
+              <div *ngIf="editserviceerror.editservicetitle.errors.required">
+                  <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the service title</p>
+              </div>
+           </div>
+          </div>
+          <div class="form-group ">
+              <label for="inputState">Service Status</label>
+              <select id="inputState" class="form-control" formControlName="editservicestatus">
+                <option selected value="0">Active</option>
+                <option value="1">Inactive</option>
+              </select>
+            </div>
+          <div class="form-group">
+              <label for="editservicedesc">Service Description</label>
+              <textarea class="form-control" formControlName="editservicedesc" id="editservicedesc" placeholder="Enter youtube title" rows="3"  [ngClass]="{ 'is-invalid': editvidSubmit && editserviceerror.editservicedesc.errors }"></textarea>
+              <div *ngIf="editvidSubmit && editserviceerror.editservicedesc.errors" class="invalid-feedback">
+                  <div *ngIf="editserviceerror.editservicedesc.errors.required">
+                      <p class="text-danger pl-1 pb-0 mb-0 createadmin_formerr">Enter the service description</p>
+                  </div>
+               </div>
+          </div>
+          <div class="text-center">
+              <button class="btn btn-primary" type="button" disabled *ngIf="iseditLoader">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+             </button>
+
+          <button type="submit" class="btn btn-primary" *ngIf="!iseditLoader">Submit</button>
+         </div>
+      </form>
+      <!-- edit new video -->
+    <!-- delete video  -->
+    <div *ngIf="selectionId == 'delete'" _ngcontent-tpr-c136="" class="example-container text-center">
+        <h2 _ngcontent-tpr-c136="" class="dialogtext1">Are you sure?</h2>
+        <h4 _ngcontent-tpr-c136="" class="dialogtext2">Confirm to proceed</h4>
+        <div _ngcontent-tpr-c136="">
+          <button class="btn btn-primary" type="button" disabled *ngIf="isdeleteLoader">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Loading...
+         </button>
+          <button *ngIf="!isdeleteLoader" _ngcontent-tpr-c136="" type="button" class="btn btn-success dialogtextbtn1 m-2" (click)="onDelete('deletetrue')">Yes</button>
+          <button _ngcontent-tpr-c136="" type="button" class="btn btn-danger dialogtextbtn1 m-2" (click)="onDelete('deletefalse')">No</button>
+      </div>
+  </div>
+      <!--  -->
+  </div>
+</ng-template>

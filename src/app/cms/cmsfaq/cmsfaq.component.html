@@ -5,43 +5,76 @@
                 <div class="container-fluid">
                   <div class="row">
                     <div class="col-sm-12 text-center">
-                      <h4 class="m-0 text-dark faq_text">FAQ</h4>
+                      <h4 *ngIf="testimonialUrl == 'faqquestion'" class="m-0 text-dark faq_text">FAQ</h4>
+                      <h4 *ngIf="testimonialUrl == 'testimonial'" class="m-0 text-dark faq_text">Testimonial</h4>
+                      <div *ngIf="testimonialUrl == 'faqquestion'" class="addfaq_btn_body"><button (click)="Editfaq('newfaq','newfaqindex','newfaqid',faqeditmodal)" type="button" class="btn btn-dark addfaq_btn">+ Add New FAQ</button></div>
+                        <div *ngIf="testimonialUrl == 'testimonial'" class="addfaq_btn_body"><button (click)="Editfaq('newtestimonials','newfaqindex','newfaqid',faqeditmodal)" type="button" class="btn btn-dark addfaq_btn">+ Add New Testimonial</button></div>
+                      
                     </div><!-- /.col -->
                   </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
               </div>
               <!-- /.content-header -->
             <div class="col- 12 col-md-10 col-lg-8 mx-auto pt-3">
-              <accordion [closeOthers]="oneAtATime"  [isAnimated]="true">
-                <accordion-group *ngFor="let faqquestions of faqquestion; let i = index" [heading]="faqquestions?.question"  [isOpen]="isFirstOpen">
-             <div class="row">    
-                <div class="col-11">
-                     <h6 class="faqinner_que">{{faqquestions?.description}}</h6>
-                 </div>
-                 <div class="col-1">
-                    <i  [ngStyle]="{ 'color': (faqquestions?.status == '1' ? 'green' : 'red') }" class="fa fa-circle" aria-hidden="true"></i>
-                    <a  (click)="Editfaq(i,faqquestions?.id,faqeditmodal)">
-                        <span class="material-icons editfaqicon">create</span>
-                        </a>
-                 </div>
-                </div>
+              <accordion  [isAnimated]="true" *ngIf="testimonialUrl == 'faqquestion'; else newtestimonial">
+                <accordion-group *ngFor="let faqquestions of faqquestion; let i = index" >
+                  <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+                    <div class="pull-left float-left">{{faqquestions?.question}}</div>
+                      <span class="float-right">
+                      <i  [ngStyle]="{ 'color': (faqquestions?.status == '0' ? 'green' : 'red') }" class="fa fa-circle" aria-hidden="true"></i>
+                      <a  *ngIf="testimonialUrl == 'faqquestion'" (click)="Editfaq('editfaq',i,faqquestions?.id,faqeditmodal)">
+                          <span class="material-icons editfaqicon">create</span>
+                       </a>
+                     
+                       <a *ngIf="testimonialUrl == 'faqquestion'" (click)="Editfaq('deletefaq',i,faqquestions?.id,faqeditmodal)">
+                        <span class="material-icons editfaqdeleteicon"> delete </span>
+                     </a>
+                    
+                    </span>
+                  </button>
+                  {{faqquestions?.description}}
                 </accordion-group>
               </accordion>
+              <ng-template  #newtestimonial>
+                <accordion  [isAnimated]="true" *ngIf="testimonialUrl == 'testimonial'">
+                  <accordion-group *ngFor="let faqquestions of faqquestion; let i = index" >
+                    <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+                      <div class="pull-left float-left">{{faqquestions?.name}}</div>
+                        <span class="float-right">
+                        <i  [ngStyle]="{ 'color': (faqquestions?.is_status == '0' ? 'green' : 'red') }" class="fa fa-circle" aria-hidden="true"></i>
+                        <a  (click)="Editfaq('edittestimonial',i,faqquestions?.id,faqeditmodal)">
+                            <span class="material-icons editfaqicon">create</span>
+                         </a>
+                         <a  (click)="Editfaq('deletetestimonial',i,faqquestions?.id,faqeditmodal)">
+                          <span class="material-icons editfaqdeleteicon"> delete </span>
+                       </a>
+                      </span>
+                    </button>
+                    <span>designation - : </span><span>{{faqquestions?.designation}}</span><br>
+                    {{faqquestions?.content}}
+                  </accordion-group>
+                </accordion>
+              </ng-template >
             </div>
         </div>
     </div>
 
     <ng-template #faqeditmodal>
         <div class="modal-header">
-          <!-- <h4 class="modal-title pull-left">Modal</h4> -->
+          <h4 class="modal-title pull-left" *ngIf="quefaqtype == 'newfaq'">Create FAQ</h4>
+          <h4 class="modal-title pull-left" *ngIf="quefaqtype == 'editfaq'">Edit FAQ</h4>
+          <h4 class="modal-title pull-left" *ngIf="quefaqtype == 'deletefaq'">Delete FAQ</h4>
+          <h4 class="modal-title pull-left" *ngIf="quefaqtype == 'newtestimonials'">Create Testimonial</h4>
+          <h4 class="modal-title pull-left" *ngIf="quefaqtype == 'edittestimonial'">Edit Testimonial</h4>
+          <h4 class="modal-title pull-left" *ngIf="quefaqtype == 'deletetestimonial'">Delete Testimonial</h4>
           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <form  [formGroup]="editfaqForm" (ngSubmit)="onfaqSubmit()"  >
+            <form *ngIf="quefaqtype == 'editfaq' || quefaqtype === 'edittestimonial'"  [formGroup]="editfaqForm" (ngSubmit)="onfaqeditSubmit()"  >
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Question</label>
+                  <label for="exampleInputEmail1"><span *ngIf="quefaqtype == 'editfaq'">Question</span><span *ngIf="quefaqtype == 'edittestimonial'">Name</span></label>
                   <input type="text" formControlName="question" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Faq Question" [ngClass]="{ 'is-invalid': submitted && faqerror.question.errors }">
                   <div *ngIf="submitted && faqerror.question.errors" class="invalid-feedback">
                     <div *ngIf="faqerror.question.errors.required">
@@ -49,20 +82,29 @@
                     </div>
                 </div>
                 </div>
+                <div class="form-group" *ngIf="quefaqtype == 'edittestimonial'">
+                  <label for="designation">Designation</label>
+                  <input type="text" formControlName="editdesignation" class="form-control"   placeholder="Designation" [ngClass]="{ 'is-invalid': submitted && faqerror.editdesignation.errors }" >
+                  <div *ngIf="submitted && faqerror.editdesignation.errors" class="invalid-feedback">
+                    <div *ngIf="faqerror.editdesignation.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 faqerrortext">Enter the designation</p>
+                    </div>
+                </div>
+                </div>
                 <div class="form-group ">
-                    <label>FAQ Status</label>
+                    <label><span *ngIf="quefaqtype == 'editfaq'">FAQ Status</span><span *ngIf="quefaqtype == 'edittestimonial'">Testimonial Status</span></label>
                     <div class="dropdown">
                       <select  class="form-control" formControlName="faqstatus">
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
+                        <option value="0">Active</option>
+                        <option value="1">Inactive</option>
                       </select>
                     </div>
                   </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Discription</label>
                     <textarea class="form-control" formControlName="discription" id="exampleFormControlTextarea1" rows="6" [ngClass]="{ 'is-invalid': submitted && faqerror.discription.errors }"></textarea>
-                    <div *ngIf="submitted && faqerror.question.errors" class="invalid-feedback">
-                        <div *ngIf="faqerror.question.errors.required">
+                    <div *ngIf="submitted && faqerror.discription.errors" class="invalid-feedback">
+                        <div *ngIf="faqerror.discription.errors.required">
                             <p class="text-danger pl-1 pb-0 mb-0 faqerrortext">Enter the discription</p>
                         </div>
                     </div>
@@ -71,5 +113,60 @@
                 <button type="submit" class="btn btn-primary faqupdatebtn">Update</button>
                  </div>
               </form>
+              <!--  for create new faq -->
+              <form  *ngIf="quefaqtype === 'newfaq'  || quefaqtype === 'newtestimonials'" [formGroup]="createfaqForm" (ngSubmit)="onfaqSubmit()"  >
+                <div class="form-group">
+                  <label for="faqquestion"><span *ngIf="quefaqtype == 'newfaq'">Question</span><span *ngIf="quefaqtype == 'newtestimonials'">Name</span></label>
+                  <input type="text" formControlName="faqtitle" class="form-control"   placeholder="Faq Question" [ngClass]="{ 'is-invalid': faqsubmitted && faqcreateerror.faqtitle.errors }">
+                  <div *ngIf="faqsubmitted && faqcreateerror.faqtitle.errors" class="invalid-feedback">
+                    <div *ngIf="faqcreateerror.faqtitle.errors.required">
+                        <p *ngIf="quefaqtype == 'newfaq'" class="text-danger pl-1 pb-0 mb-0 faqerrortext">Enter the Question</p>
+                        <p *ngIf="quefaqtype == 'newtestimonials'" class="text-danger pl-1 pb-0 mb-0 faqerrortext">Enter the Name</p>
+                      </div>
+                </div>
+                </div>
+                <div class="form-group" *ngIf="quefaqtype == 'newtestimonials'">
+                  <label for="designation">Designation</label>
+                  <input type="text" formControlName="designation" class="form-control"   placeholder="Designation" [ngClass]="{ 'is-invalid': faqsubmitted && faqcreateerror.designation.errors }" >
+                  <div *ngIf="faqsubmitted && faqcreateerror.designation.errors " class="invalid-feedback">
+                    <div *ngIf="faqcreateerror.designation.errors.required">
+                        <p class="text-danger pl-1 pb-0 mb-0 faqerrortext">Enter the designation</p>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group ">
+                    <label><span *ngIf="quefaqtype == 'newfaq'">FAQ Status</span><span *ngIf="quefaqtype == 'newtestimonials'">Testimonial Status</span></label>
+                    <div class="dropdown">
+                      <select  class="form-control" formControlName="faqcreatestatus">
+                        <option value="0">Active</option>
+                        <option value="1">Inactive</option>
+                      </select>
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <label for="faqdetail">Discription</label>
+                    <textarea class="form-control" formControlName="faqdiscription"  rows="6" [ngClass]="{ 'is-invalid': faqsubmitted && faqcreateerror.faqdiscription.errors }"></textarea>
+                    <div *ngIf="faqsubmitted && faqcreateerror.faqdiscription.errors " class="invalid-feedback">
+                        <div *ngIf="faqcreateerror.faqdiscription.errors.required">
+                            <p class="text-danger pl-1 pb-0 mb-0 faqerrortext">Enter the discription</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                <button type="submit" class="btn btn-primary faqupdatebtn">Create</button>
+                 </div>
+              </form>
+              <!-- delete -->
+              <div  *ngIf="quefaqtype == 'deletefaq' || quefaqtype == 'deletetestimonial'" class="example-container text-center ng-star-inserted">
+                <h2 class="dialogtext1">Are you sure?</h2><h4 class="dialogtext2">Confirm to proceed</h4>
+                <div >
+                <button *ngIf="quefaqtype == 'deletefaq'" type="button" class="btn btn-success dialogtextbtn1 m-2 ng-star-inserted" (click)="onfaqDelete('faqdelete')">Yes</button>
+                <button *ngIf="quefaqtype == 'deletetestimonial'" type="button" class="btn btn-success dialogtextbtn1 m-2 ng-star-inserted" (click)="onfaqDelete('testimonialdelete')">Yes</button>
+                <button  type="button" class="btn btn-danger dialogtextbtn1 m-2" (click)="onfaqDelete('rejectdelete')">No</button>
+              </div>
+            </div>
+              <!-- delete -->
+
+              <!-- ############################################################################################ -->
         </div>
       </ng-template>

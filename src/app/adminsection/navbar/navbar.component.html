@@ -135,7 +135,21 @@
                 <!-- active -->
                 <a routerLink="/videolisting" class="nav-link">
                   <i class="fa fa-youtube mr-2 menu_color" aria-hidden="true"></i>
-                  <p class="side_menucolor">videolist</p>
+                  <p class="side_menucolor">Videolist</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <!-- active -->
+                <a routerLink="/servicelisting" class="nav-link">
+                  <i class="fa fa-th  mr-2 menu_color" aria-hidden="true"></i>
+                  <p class="side_menucolor">Servicelist</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <!-- active -->
+                <a routerLink="/newslisting" class="nav-link">
+                  <i class="fa fa-newspaper-o mr-2 menu_color" aria-hidden="true"></i>
+                  <p class="side_menucolor">Newslist</p>
                 </a>
               </li>
             </ul>
@@ -215,17 +229,21 @@
                   <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
                   <p class="slide_menu mat_submenu_color">About Us</p>
                 </a>
-                <a routerLink="/cmsupdate" [queryParams]="{ page: 'contactus' }"  class="nav-link">
+                <!-- <a routerLink="/cmsupdate" [queryParams]="{ page: 'contactus' }"  class="nav-link">
                   <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
                   <p class="slide_menu mat_submenu_color">Contact Us</p>
                 </a>
                 <a routerLink="/cmsupdate" [queryParams]="{ page: 'termscondition' }"  class="nav-link">
                   <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
                   <p class="slide_menu mat_submenu_color">T & C</p>
-                </a>
-                <a routerLink="/faq"  class="nav-link">
+                </a> -->
+                <a routerLink="/faq"  [queryParams]="{ faqpage: 'faqquestion' }" class="nav-link">
                   <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
                   <p class="slide_menu mat_submenu_color">FAQ</p>
+                </a>
+                <a [routerLink]="faq"  [queryParams]="{ faqpage: 'testimonial' }" class="nav-link">
+                  <i class="fa fa-circle-o mr-1 menu_color" aria-hidden="true"></i>
+                  <p class="slide_menu mat_submenu_color">Testimonial</p>
                 </a>
               </mat-expansion-panel>
             </mat-accordion>

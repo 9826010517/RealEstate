@@ -28,58 +28,34 @@ export class AboutusComponent implements OnInit {
 
   this.peramroute.queryParams.subscribe((params:any) => {
     console.log('lolo',params.page);
-    this.authservice.get(CONSTANTS.cmsdetail).subscribe((res: any) => {
+    this.authservice.get(CONSTANTS.frontAboutus).subscribe((res: any) => {
       if(params.page == 'aboutus'){
         this.titleerrmsg = "";
-        console.log('termscondition res here',res);
         res.map(val => {
         if(val.id == 4){
           console.log('cms res here',val);
           this.contentid = val.id;
           this.model.que = val.title;
           this.model.editorData = val.content;
-        }
-        })
-      }else if(params.page == 'contactus'){
-        this.titleerrmsg = "";
-        res.map(val => {
-          if(val.id == 6){
-            this.contentid = val.id;
-            this.model.que = val.title;
-            this.model.editorData = val.content;
-            console.log('contactus res here',val);
-          }
-        })
-      }else if(params.page == 'termscondition'){
-        this.titleerrmsg = "";
-        res.map(val => {
-          if(val.id == 9){
-            this.contentid = val.id;
-            this.model.que = val.title;
-            this.model.editorData = val.content;
-            console.log('termscondition res here',val);
-          }
+         }
         })
       }else{
         this.router.navigate(['/adminhome']);
       }
     })
   })
- 
-   
-  
-  }
+     }
 
   oncSubmit(){
 if( this.model.que == ""){
   this.titleerrmsg = "Title is required";
 }else{
   this.titleerrmsg = "";
+  console.log('about testing',this.model.que,this.model.editorData)
     const body = new HttpParams()
-    .set('id',   this.contentid)
     .set('title',   this.model.que)
     .set('content',  this.model.editorData)
-    this.authservice.post(CONSTANTS.cmsedit, body).subscribe((res: any) => {
+    this.authservice.post(CONSTANTS.admineditaboutus, body).subscribe((res: any) => {
       if(res.status == true){
       this.messageService.add({severity:'success', summary: 'Success',detail:res.message});
       console.log('update res here',res);

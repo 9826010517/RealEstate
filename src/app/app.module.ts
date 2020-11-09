@@ -35,6 +35,7 @@ import {FrontendmoduleModule} from './frontendmodule/frontendmodule.module'
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { ServicelistComponent } from './_adminmaincomponent/servicelist/servicelist.component';
 import { YoutubevideolistComponent } from './_adminmaincomponent/youtubevideolist/youtubevideolist.component';
+import { NewslistComponent } from './_adminmaincomponent/newslist/newslist.component';
 // import { ModalModule } from 'ngx-bootstrap';
 // import { NgTableComponent, NgTableFilteringDirective, NgTablePagingDirective, NgTableSortingDirective } from 'ng2-table/ng2-table';
 
@@ -55,7 +56,8 @@ import { YoutubevideolistComponent } from './_adminmaincomponent/youtubevideolis
     ProfileupdateComponent,
     UploadproductComponent,
     ServicelistComponent,
-    YoutubevideolistComponent
+    YoutubevideolistComponent,
+    NewslistComponent
    
   ],
   imports: [

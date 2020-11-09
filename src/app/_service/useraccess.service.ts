@@ -67,6 +67,24 @@ export class UseraccessService {
                 );
             }
 
+
+              //  for post image
+          imagepostservice(url, body): Observable<any> {
+          console.log('fataentered',url,body)
+            return this.http.post<any>(url,  body)
+              .pipe(
+                map(res => {
+                if (!!res) {
+                  // For login 
+                  return res;
+                }
+               
+                return false;
+              }),
+              catchError(this.handleError)
+              );
+          }
+
         // for get
             get(url): Observable<any> {
               console.log('check my url',url)

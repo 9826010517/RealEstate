@@ -5,15 +5,15 @@ import {CONSTANTS,serviceimage} from '../../_service/constant';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { HttpParams} from '@angular/common/http';
 import {MessageService} from 'primeng/api';
+
 @Component({
-  selector: 'app-servicelist',
-  templateUrl: './servicelist.component.html',
-  styleUrls: ['./servicelist.component.css'],
+  selector: 'app-newslist',
+  templateUrl: './newslist.component.html',
+  styleUrls: ['./newslist.component.css'],
   providers: [MessageService]
 })
 
-
-export class ServicelistComponent implements OnInit {
+export class NewslistComponent implements OnInit {
   safeURL;
   Servicedata = [];
   modalRef: BsModalRef;
@@ -120,7 +120,7 @@ export class ServicelistComponent implements OnInit {
                      this.editService.setValue({
                       editservicetitle: this.Servicedata[index].title,
                       editservicedesc: this.Servicedata[index].content ,
-                      editservicestatus: this.Servicedata[index].status
+                      editservicestatus: this.Servicedata[index].is_status
                      })
                      this.imageUrl = this.serviceImgPath+this.Servicedata[index].image;
                     this.editFile = true;
@@ -149,14 +149,14 @@ export class ServicelistComponent implements OnInit {
       formData.append('status', this.createserviceForm.value.servicestatus);
       formData.append('bgimage', this.imageuploadForm.value.file);
 
-      this.userservice.imagepostservice(CONSTANTS.admincreateservice, formData).subscribe(res=>{
+      this.userservice.imagepostservice(CONSTANTS.admincreatenews, formData).subscribe(res=>{
               if(res && res.status == true){
            let newVid = {
-                          service_id:res.id,
+                          id:res.id,
                           image:res.image_name,
                           title: this.createserviceForm.value.servicetitle,
                           content:this.createserviceForm.value.servicedetail,
-                          status: this.createserviceForm.value.servicestatus  
+                          is_status: this.createserviceForm.value.servicestatus  
                         }
                       this.Servicedata.unshift(newVid);
                       this.createserviceForm.reset();
@@ -186,16 +186,19 @@ export class ServicelistComponent implements OnInit {
     }else{
 
       this.iseditLoader = true;
-   
+      console.log('edx 0',this.editvidid,
+      this.editService.value.editservicetitle, this.editService.value.editservicedesc,
+      this.editService.value.editservicestatus)
       const formData = new FormData();
         if(this.imageuploadForm.value.file == null ){
           console.log('edx 1',this.imageuploadForm.value.file)
-          formData.append('service_id', this.editvidid);
+          formData.append('id', this.editvidid);
           formData.append('title', this.editService.value.editservicetitle);
           formData.append('content', this.editService.value.editservicedesc);
           formData.append('status', this.editService.value.editservicestatus);
         }else{
-          formData.append('service_id', this.editvidid);
+      
+          formData.append('id', this.editvidid);
           formData.append('title', this.editService.value.editservicetitle);
           formData.append('content', this.editService.value.editservicedesc);
           formData.append('status', this.editService.value.editservicestatus);
@@ -205,8 +208,8 @@ export class ServicelistComponent implements OnInit {
     
 
       // api calling 
-    this.userservice.imagepostservice(CONSTANTS.adminupdateservice, formData).subscribe(res=>{
-      console.log('ch ***', this.serviceImgPath+res.image_name);
+    this.userservice.imagepostservice('https://learnsetu.com/RealEstate/api/update_news', formData).subscribe(res=>{
+      console.log('ch ***///***', res);
         if(res && res.status == true){
           if( this.imageuploadForm.value.file != null ){
             this.Servicedata[this.editindex].image = res.image_name;
@@ -233,9 +236,9 @@ export class ServicelistComponent implements OnInit {
       // const body = new HttpParams()
       // .set('id', this.editvidid )
       const formData = new FormData();
-      formData.append('service_id', this.editvidid);
+      formData.append('id', this.editvidid);
       // api calling 
-      this.userservice.imagepostservice(CONSTANTS.admindeleteservice, formData).subscribe(res=>{
+      this.userservice.imagepostservice(CONSTANTS.admindeletenews, formData).subscribe(res=>{
         if(res && res.status == true){   
           this.Servicedata.splice(this.editindex, 1);
           this.modalRef.hide();  
@@ -251,8 +254,8 @@ export class ServicelistComponent implements OnInit {
   ngOnInit(): void {
 
     this.Servicedata = [];
-    this.userservice.get(CONSTANTS.frontGetService).subscribe((res:any)=>{
-      console.log('my data', this.Servicedata);
+    this.userservice.get(CONSTANTS.frontnews).subscribe((res:any)=>{
+      console.log('my news', this.Servicedata);
       res.map(value=>{
         this.Servicedata.push(value);
         this.isvideoLoader = true;
@@ -261,4 +264,3 @@ export class ServicelistComponent implements OnInit {
   }
   
 }
-

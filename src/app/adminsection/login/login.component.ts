@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
             .set('username', this.loginForm.value.username)
             .set('password', this.loginForm.value.password)
             // this.loginForm.value
-   this.authservice.post(CONSTANTS.loginapi, body).subscribe((res: any) => {
+   this.authservice.post(CONSTANTS.frontloginapi, body).subscribe((res: any) => {
     if(res && res.status == true){
       // console.log('api final res value -- ',res);
       // localStorage.setItem("loginkey", JSON.stringify(res.data.reg_id));

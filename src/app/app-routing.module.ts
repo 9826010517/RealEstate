@@ -15,6 +15,8 @@ import { UpdateadminComponent } from './manageadmin/updateadmin/updateadmin.comp
 import { ProfileupdateComponent } from './profileupdate/profileupdate.component';
 import { UploadproductComponent } from './products/uploadproduct/uploadproduct.component';
 import { YoutubevideolistComponent } from './_adminmaincomponent/youtubevideolist/youtubevideolist.component';
+import { ServicelistComponent } from './_adminmaincomponent/servicelist/servicelist.component';
+import { NewslistComponent } from './_adminmaincomponent/newslist/newslist.component';
 const routes: Routes = [
   //  { path: '', component: HomepageComponent, canActivate: [AuthGuard] ,data: { roles: Role.authRoles.User }},
 { path: 'adminhome', component: HomepageComponent, canActivate: [AuthGuard] ,data: { roles: Role.authRoles.User }},
@@ -31,6 +33,9 @@ const routes: Routes = [
 { path: 'uploadproduct', component: UploadproductComponent,canActivate: [AuthGuard],data: { roles: Role.authRoles.User }},
 // new admin urls
 { path: 'videolisting', component: YoutubevideolistComponent,canActivate: [AuthGuard],data: { roles: Role.authRoles.Superadmin }},
+{ path: 'servicelisting', component: ServicelistComponent,canActivate: [AuthGuard],data: { roles: Role.authRoles.Superadmin }},
+{ path: 'newslisting', component: NewslistComponent,canActivate: [AuthGuard],data: { roles: Role.authRoles.Superadmin }},
+
 {
   path: '',
   loadChildren: () =>

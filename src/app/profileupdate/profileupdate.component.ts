@@ -72,7 +72,7 @@ export class ProfileupdateComponent implements OnInit {
       .set('old_password', this.updatePassword.value.currentpassword)
       .set('new_password', this.updatePassword.value.newpassword)
       .set('confirm_password', this.updatePassword.value.confirmpassword)
-      this.authservice.post(CONSTANTS.changepassword, body).subscribe((res: any) => {  
+      this.authservice.post(CONSTANTS.frontchangepassword, body).subscribe((res: any) => {  
         console.log('password changed',res);
         if(res && res.status == true){this.passwordMsg = res.message;   console.log('password changed',res.message); this.is_updated = true;}
         else if(res && res.status == false){this.passwordMsg = res.error;   console.log('password changed',res.error); this.is_notupdated = true; }
@@ -92,7 +92,7 @@ export class ProfileupdateComponent implements OnInit {
             .set('designation', this.updateForm.value.designation)
             .set('email', this.updateForm.value.email)
             .set('admin_type', this.apiuserstatus)      
-            this.authservice.post(CONSTANTS.updateadminprofile, body).subscribe((res: any) => {
+            this.authservice.post(CONSTANTS.frontupdateadminprofile, body).subscribe((res: any) => {
               if(res && res.status == true){
                 this.profilearray= [];
               
