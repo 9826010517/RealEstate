@@ -3,9 +3,9 @@ import { environment } from '../../environments/environment';
 // Base url constant
 export const BASEURL = environment.api_url;
 export const FRONTBASEURL = environment.front_apiurl;
-export const serviceimage = 'https://www.learnsetu.com/RealEstate/assets/upload/services_imgs/';
-export const smallserviceimage = 'https://www.learnsetu.com/RealEstate/assets/upload/services_imgs/small/';
-export const galleryimages = 'https://www.learnsetu.com/RealEstate/assets/upload/gallery_imgs/';
+export const serviceimage = 'https://www.learnsetu.com/RealEstate/Backend/assets/upload/services_imgs/';
+export const smallserviceimage = 'https://www.learnsetu.com/RealEstate/Backend/assets/upload/services_imgs/small/';
+export const galleryimages = 'https://www.learnsetu.com/RealEstate/Backend/assets/upload/gallery_imgs/';
 
 // Global constant file
 export const CONSTANTS = Object.freeze({

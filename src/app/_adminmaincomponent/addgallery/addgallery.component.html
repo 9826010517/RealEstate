@@ -1,0 +1,87 @@
+<div class="wrapper">
+    <p-toast ></p-toast>
+  <div class="content-wrapper">
+    <div class="col-12 pb-3 pt-2"> 
+        <div class="text-center">           
+             <button type="button" class="btn btn-dark" (click)="openModal(videotemplate,'newvid','newindex','new')">+ Add New Image</button>
+        </div>
+    </div> 
+      <div class="row p-3">
+          <div class="col-12 col-md-3 col-lg-2 mb-3" *ngFor="let apiimage of apiImages">
+            <img src="{{apiimage.image_name}}" class="img-fluid admin_gallary_image" alt="Responsive image">
+            <div class="text-center pt-2">
+                <button type="button" (click)="openModal(videotemplate,apiimage.id,i,trackid='delete')" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+      </div>
+  </div>
+ </div>
+
+
+ <!-- model for create and update video -->
+<ng-template #videotemplate>
+    <div class="modal-header">
+      <h4 *ngIf="selectionId == 'new'" class="modal-title pull-left">Add New Image</h4>
+      <h4 *ngIf="selectionId == 'delete'" class="modal-title pull-left">Delete Image</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- image upload -->
+      <div class="row custom-wrapper">
+        <div class="col-md-12">
+    
+          <!-- Form starts -->
+          <!-- (ngSubmit)="onSubmit()" -->
+          <form *ngIf="selectionId != 'delete'" [formGroup]="imageuploadForm" >
+    
+            <div class="group-gap">
+    
+              <!-- Upload image -->
+              <div class="avatar-upload">
+                <div class="avatar-edit">
+                  <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                </div>
+                <div class="avatar-preview">
+                  <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-danger btn-lg btn-block uploadimg_btn" (click)="fileInput.click()">Upload Image</button>
+              <div class="text-center pt-2 pb-2">
+                <span class="text-danger">{{nullImgErr}}</span>
+             </div>
+
+             <div class="text-center">      
+                <button class="btn btn-primary" type="button" disabled *ngIf="isimageLoader">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+               </button>     
+                <button *ngIf="!isimageLoader" type="button" class="btn btn-dark" (click)="enterImage()">save</button>
+           </div>
+          </form><!-- Form ends -->
+    
+        </div>
+      </div>
+      <!-- image upload closed -->
+     
+      <!-- delete video  -->
+      <div *ngIf="selectionId == 'delete'" _ngcontent-tpr-c136="" class="example-container text-center">
+          <h2 _ngcontent-tpr-c136="" class="dialogtext1">Are you sure?</h2>
+          <h4 _ngcontent-tpr-c136="" class="dialogtext2">Confirm to proceed</h4>
+          <div _ngcontent-tpr-c136="">
+            <button class="btn btn-primary" type="button" disabled *ngIf="isdeleteLoader">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+           </button>
+            <button *ngIf="!isdeleteLoader" _ngcontent-tpr-c136="" type="button" class="btn btn-success dialogtextbtn1 m-2" (click)="onDelete('deletetrue')">Yes</button>
+            <button _ngcontent-tpr-c136="" type="button" class="btn btn-danger dialogtextbtn1 m-2" (click)="onDelete('deletefalse')">No</button>
+        </div>
+    </div>
+        <!--  -->
+    </div>
+  </ng-template>
