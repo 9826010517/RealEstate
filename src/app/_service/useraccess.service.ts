@@ -40,7 +40,6 @@ export class UseraccessService {
                       this.results =  res.data.admin_type;
                       localStorage.setItem("userprofile", JSON.stringify(res.data));
                       this.userprofile.next( res.data);
-                      
                       console.log('my res', res.data)
                       this.router.navigate(['/servicelisting']);
                     }
