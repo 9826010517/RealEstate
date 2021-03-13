@@ -88,7 +88,6 @@ export class AddgalleryComponent implements OnInit {
         this.apiImages.unshift(imgres);
          this.isimageLoader = false;
          this.messageService.add({severity:'success', summary: 'Success',detail:res.message});
-        console.log('image store res',res);
       }
     }) 
   }
@@ -99,14 +98,10 @@ export class AddgalleryComponent implements OnInit {
     
     if(viddelete == 'deletetrue'){
       this.isdeleteLoader = true;
-     // const body = new HttpParams()
-     // .set('id', this.editvidid )
-     console.log('image deleting', this.editvidid);
      const formData = new FormData();
      formData.append('id', this.editvidid);
      // api calling 
      this.userservice.imagepostservice(CONSTANTS.admindeletegallery, formData).subscribe(res=>{
-       console.log('image deleting',res);
       if(res && res.status == true){   
          this.apiImages.splice(this.editindex, 1);
          this.modalRef.hide();  

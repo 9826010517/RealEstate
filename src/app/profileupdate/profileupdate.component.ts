@@ -43,7 +43,7 @@ export class ProfileupdateComponent implements OnInit {
     })
 
     this.authservice.userprofile.subscribe(res=>{
-      console.log('we workin now.....');
+
       this.profilearray= [];
       if(res ){
         this.profilearray.push(res);
@@ -55,7 +55,7 @@ export class ProfileupdateComponent implements OnInit {
             email:this.profilearray[0].email,
             designation:this.profilearray[0].designation
           })
-         console.log('data reposce /////////////////////',res);
+        
       }
     })
   }
@@ -73,9 +73,9 @@ export class ProfileupdateComponent implements OnInit {
       .set('new_password', this.updatePassword.value.newpassword)
       .set('confirm_password', this.updatePassword.value.confirmpassword)
       this.authservice.post(CONSTANTS.frontchangepassword, body).subscribe((res: any) => {  
-        console.log('password changed',res);
-        if(res && res.status == true){this.passwordMsg = res.message;   console.log('password changed',res.message); this.is_updated = true;}
-        else if(res && res.status == false){this.passwordMsg = res.error;   console.log('password changed',res.error); this.is_notupdated = true; }
+      
+        if(res && res.status == true){this.passwordMsg = res.message;   this.is_updated = true;}
+        else if(res && res.status == false){this.passwordMsg = res.error;    this.is_notupdated = true; }
         })
     }
   }
@@ -108,7 +108,7 @@ export class ProfileupdateComponent implements OnInit {
                localStorage.setItem("userprofile", JSON.stringify(updateddata));
                this.authservice.userprofile.next(JSON.parse(localStorage.getItem('userprofile')));
                this.messageService.add({severity:'success', summary: 'Success',detail:res.message});
-               console.log('data ------99',this.updateForm);
+            
               }else if(res && res.status == false){
                 this.messageService.add({severity:'error', summary: 'Error',detail:res.error});
               }

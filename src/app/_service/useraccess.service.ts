@@ -40,26 +40,14 @@ export class UseraccessService {
                       this.results =  res.data.admin_type;
                       localStorage.setItem("userprofile", JSON.stringify(res.data));
                       this.userprofile.next( res.data);
-                      console.log('my res', res.data)
                       this.router.navigate(['/servicelisting']);
                     }
                   
                    
-                    // if (res && api_res.message == "Your session has been expired. Please login again") {
-                    //   this.logoutUser();
-                    //   this.toastr.error('', "Your session has been expired. Please login again", {
-                    //     closeButton: false,
-                    //     onActivateTick: true,
-                    //     enableHtml: true
-                    //   });
-                    // }
+                  
                     return res;
                   }
-                  // this.toastr.error('', "invalid request error", {
-                  //   closeButton: false,
-                  //   onActivateTick: true,
-                  //   enableHtml: true
-                  // });
+                
                   return false;
                 }),
                 catchError(this.handleError)
@@ -69,7 +57,7 @@ export class UseraccessService {
 
               //  for post image
           imagepostservice(url, body): Observable<any> {
-          console.log('fataentered',url,body)
+        
             return this.http.post<any>(url,  body)
               .pipe(
                 map(res => {
@@ -86,7 +74,7 @@ export class UseraccessService {
 
         // for get
             get(url): Observable<any> {
-              console.log('check my url',url)
+             
               let options = {
                 headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8')
             };
@@ -106,16 +94,16 @@ export class UseraccessService {
             handleError(error) {
           let errorMessage = '';
           if (error.error instanceof ErrorEvent) {
-            console.log('check that 11',error.error);
+         
               // client-side error
               errorMessage = `Error: ${error.error.message}`;
           } else {
-            console.log('check that 11++',error.error.error);
+           
               // server-side error
               errorMessage = error.error.error;
               // errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
           }
-          console.log('check that',errorMessage);
+        
             window.alert(errorMessage);
             return throwError(errorMessage);
             }

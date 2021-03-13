@@ -2,21 +2,38 @@
 <html class="no-js" lang="zxx">
     <div>
     <!-- slider_area_start -->
+                                 
+    <!-- slider_area_start -->
     <div class="slider_area">
+        <div class="single_slider single_slider2  d-flex align-items-center property_bg overlay2">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-10 offset-xl-1">
+                            <div class="property_wrap front_sr_wrap">
+                                    <div class="slider_text text-center justify-content-center">
+                                            <h3>Design your dream home</h3>
+                                        </div>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    <!-- <div class="slider_area">
             <div class="single_slider  d-flex align-items-center slider_bg_1">
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-xl-10 offset-xl-1">
                                 <div class="slider_text text-center justify-content-center">
                                     <h3>Find your best Property</h3>
-                                    <!-- <span class="">Find your best Property</span> -->
                                     <p>Esteem spirit temper too say adieus who direct esteem.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-             </div>
+             </div> -->
     <!-- slider_area_end -->
 
     <!-- popular_property  -->
@@ -25,7 +42,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="section_title mb-40 text-center">
-                        <h3>Popular Properties</h3>
+                        <h3 class="home_subheading">Popular Properties</h3>
                     </div>
                 </div>
             </div>
@@ -39,7 +56,7 @@
                             <div class="main_pro">
                                     <h3><a href="#">{{services.title}}</a></h3>
                                     <div class="mark_pro">
-                                        <span class="mr-2">Description -:</span>
+                                        <span class="mr-2 card_descip">Description -:</span>
                                         <span class="comment_text">
                                             {{excerpt[i] ? services.content : services.content | slice:0:270}}
                                             <a href="javascript:void(0);" *ngIf="services.content.length > 270"
@@ -62,7 +79,7 @@
 
     <!-- accordion  -->
     
-        <app-faq></app-faq>
+        <!-- <app-faq></app-faq> -->
         <!-- accordion  -->
 
     <!-- counter_area  -->

@@ -190,7 +190,6 @@ export class ServicelistComponent implements OnInit {
    
       const formData = new FormData();
         if(this.imageuploadForm.value.file == null ){
-          console.log('edx 1',this.imageuploadForm.value.file)
           formData.append('service_id', this.editvidid);
           formData.append('title', this.editService.value.editservicetitle);
           formData.append('content', this.editService.value.editservicedesc);
@@ -201,13 +200,11 @@ export class ServicelistComponent implements OnInit {
           formData.append('content', this.editService.value.editservicedesc);
           formData.append('status', this.editService.value.editservicestatus);
           formData.append('bgimage', this.imageuploadForm.value.file);
-          console.log('edx 2',this.imageuploadForm.value.file)
         }
     
 
       // api calling 
     this.userservice.imagepostservice(CONSTANTS.adminupdateservice, formData).subscribe(res=>{
-      console.log('ch ***', this.serviceImgPath+res.image_name);
         if(res && res.status == true){
           if( this.imageuploadForm.value.file != null ){
             this.Servicedata[this.editindex].image = res.image_name;
@@ -253,7 +250,6 @@ export class ServicelistComponent implements OnInit {
 
     this.Servicedata = [];
     this.userservice.get(CONSTANTS.frontGetService).subscribe((res:any)=>{
-      console.log('my data', this.Servicedata);
       res.map(value=>{
         this.Servicedata.push(value);
         this.isvideoLoader = true;

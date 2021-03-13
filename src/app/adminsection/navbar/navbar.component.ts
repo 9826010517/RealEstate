@@ -14,11 +14,11 @@ profilename;
     this.authservice.logoutwindow();
       }
   ngOnInit(): void {
-    // console.log('data reposce received 00',this.profilename);
+
     this.authservice.userprofile.subscribe(res=>{
       if(res && res.name){
       this.profilename = res.name;
-      console.log('data reposce /////////////////////',res);
+
       }
     })
   }

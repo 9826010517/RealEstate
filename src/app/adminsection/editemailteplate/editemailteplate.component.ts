@@ -57,7 +57,7 @@ export class EditemailteplateComponent implements OnInit {
       }else if(user.smsstatus == 0){
         activesms = 'Inactive'
       }
-      console.log('here check 87878788787',this.mailbodydata)
+   
       this.updatemailForm.setValue({
         mailsubject:user.subject,
         mailstatus : activemail,
@@ -91,7 +91,7 @@ export class EditemailteplateComponent implements OnInit {
       .set('status',changeemailstatus)
       .set('sms_content',this.mysmsInput.nativeElement.value )
       .set('sms_status',changesmsstatus )
-      
+      // this.authservice.post(CONSTANTS.updateemailtemplate, body).subscribe((res: any) => {      
 this.authservice.post(CONSTANTS.updateemailtemplate, body).subscribe((res: any) => {
 if(res && res.status == true){
   this.messageService.add({severity:'success', summary: 'Success',detail:res.message});

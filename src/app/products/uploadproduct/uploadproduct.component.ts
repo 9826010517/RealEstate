@@ -35,7 +35,7 @@ export class UploadproductComponent implements OnInit {
   }
   onFileChanged(event) {
     const file = event.target.files[0];
-    console.log('submit /////',file);
+   
   }
   onuploadProduct(){
     this.submitted = true;
@@ -43,6 +43,6 @@ export class UploadproductComponent implements OnInit {
       return;
     }
     else {
-console.log('submit admin form',this.uploadproductForm.value);
+
     }}
 }

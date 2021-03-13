@@ -187,12 +187,10 @@ export class NewslistComponent implements OnInit {
     }else{
 
       this.iseditLoader = true;
-      console.log('edx 0',this.editvidid,
-      this.editService.value.editservicetitle, this.editService.value.editservicedesc,
-      this.editService.value.editservicestatus)
+   
       const formData = new FormData();
         if(this.imageuploadForm.value.file == null ){
-          console.log('edx 1',this.imageuploadForm.value.file)
+       
           formData.append('id', this.editvidid);
           formData.append('title', this.editService.value.editservicetitle);
           formData.append('content', this.editService.value.editservicedesc);
@@ -204,13 +202,13 @@ export class NewslistComponent implements OnInit {
           formData.append('content', this.editService.value.editservicedesc);
           formData.append('status', this.editService.value.editservicestatus);
           formData.append('bgimage', this.imageuploadForm.value.file);
-          console.log('edx 2',this.imageuploadForm.value.file)
+         
         }
     
 
       // api calling 
     this.userservice.imagepostservice('https://learnsetu.com/RealEstate/api/update_news', formData).subscribe(res=>{
-      console.log('ch ***///***', res);
+     
         if(res && res.status == true){
           if( this.imageuploadForm.value.file != null ){
             this.Servicedata[this.editindex].image = res.image_name;
@@ -256,7 +254,6 @@ export class NewslistComponent implements OnInit {
 
     this.Servicedata = [];
     this.userservice.get(CONSTANTS.frontnews).subscribe((res:any)=>{
-      console.log('my news', this.Servicedata);
       res.map(value=>{
         this.Servicedata.push(value);
         this.isvideoLoader = true;

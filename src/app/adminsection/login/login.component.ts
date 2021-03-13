@@ -42,21 +42,17 @@ export class LoginComponent implements OnInit {
       return;
     }
     else {
-   console.log('form value',this.loginForm.value )
-  //  .set('email', this.loginForm.value.username)
+
+  
    const body = new HttpParams()
             .set('username', this.loginForm.value.username)
             .set('password', this.loginForm.value.password)
             // this.loginForm.value
    this.authservice.post(CONSTANTS.frontloginapi, body).subscribe((res: any) => {
     if(res && res.status == true){
-      // console.log('api final res value -- ',res);
-      // localStorage.setItem("loginkey", JSON.stringify(res.data.reg_id));
-      // localStorage.setItem("userrole", JSON.stringify(res.data.admin_type));
-      // localStorage.setItem("userrole", "Superadmin");
-      // this.router.navigate(['']);
+     
     }else{
-      console.log('api final res value ++ ',res.error);
+    
       this.err_msgapi = res.error;
     }
    })

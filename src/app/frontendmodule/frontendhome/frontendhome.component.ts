@@ -12,10 +12,9 @@ export class FrontendhomeComponent implements OnInit {
   testimonial = [];
   excerpt: Array<any> = [];
   slicify = (id) => {
-    console.log('metest here with id',  this.excerpt[id])
-    console.log('metest here with id +++',  !this.excerpt[id])
+
     this.excerpt[id] = !this.excerpt[id];
-    console.log('metest here', this.excerpt)
+  
   }
   constructor(private userservice:UseraccessService) {}
   image_baseurl = smallserviceimage;
